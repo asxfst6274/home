@@ -17,9 +17,8 @@ module.exports = {
   logo3: `/share/images/logo3.png`,
   email: "support@asoxfirst.com",
   // phone: "+1 716 4642 799",
-  location: "United Kingdom",
-  address1:
-    "Colwyn House, Sheepen Place, Colchester, Essex, C03 3LD. Registered in England No. 2412345",
+  location: "",
+  address1: "",
   address2: "UK",
   interestRate: 5,
   year: 1905,

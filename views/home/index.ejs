@@ -289,7 +289,7 @@
                       </li>
                     </ul>
                   </div>
-                  <div class="about-one__experience-box">
+                  <!-- <div class="about-one__experience-box">
                     <div class="about-one__experience-icon">
                       <span class="icon-certificate"></span>
                     </div>
@@ -298,7 +298,7 @@
                         Over <%= dataFile.age %> Years of Banking Experience
                       </p>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="about-one__btn-box">
                   <div class="about-one__shape-3 float-bob-x">
@@ -905,6 +905,7 @@
                       </h3>
                     </div>
                   </li>
+                  <% if(dataFile.address1){ %>
                   <li>
                     <div class="icon">
                       <span class="icon-pin"></span>
@@ -916,6 +917,7 @@
                       </h3>
                     </div>
                   </li>
+                  <% } %>
                 </ul>
               </div>
             </div>
