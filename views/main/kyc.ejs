@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <%- include("includes/head.ejs") %>
+
+  <style>
+    .user-setting-thumb {
+    width: 250px;
+    height: 150px;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.user-setting-thumb .user-setting-thumb-up {
+    border-radius: 1rem;
+    overflow: hidden;
+}
+  </style>
+  <body>
+    <%- include("includes/navigation.ejs") %>
+
+    <!-- Body-content -->
+    <div class="body-content">
+      <div class="mobile-screen">
+        <%- include("../share/notice.ejs") %>
+        <div
+          class="section-header d-block tw-border-b-4 tw-border-red1 mb-3 pb-2"
+        >
+          <h2 class="text-center">KYC Verification</h2>
+        </div>
+        <form method="post" action="/kyc/upload?_csrf=<%= csrfToken %>" enctype="multipart/form-data">
+          <% if(kyc && kyc.status === 'pending') { %>
+          <div class="bg-white p-3 rounded shadow mb-4">
+            <h3 class="text-center">Your Document is being processed</h3>
+          </div>
+          <% } %>
+          <% if(kyc && kyc.status === 'approved') { %>
+          <div class="bg-white p-3 rounded shadow mb-4">
+            <h3 class="text-center">Your Document has already been approved</h3>
+          </div>
+          <% } %>
+          <% if(kyc && kyc.status === 'rejected') { %>
+          <div class="bg-white p-3 rounded shadow mb-4">
+            <h3 class="text-center">Your Document was rejected, please upload a valid document</h3>
+          </div>
+          <% } %>
+          <% if(!kyc || kyc.status === 'rejected') { %>
+          <input
+            type="hidden"
+            name="_csrf"
+            id="csrf"
+            value="<%= csrfToken %>"
+          />
+          <div class="bg-white p-3 rounded shadow mb-4">
+            <div class="form-group mb-15" id="account">
+              <label class="form-label mb-1 tw-text-sm" for="type">Document Type</label>
+              <select
+                id="type"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                name="type"
+              >
+                <option value="Governmental ID"
+                <%= type === 'Governmental ID' ? 'selected' : '' %> 
+                > 
+                Governmental ID</option>
+                <option value=" International Passport"
+                <%= type === ' International Passport' ? 'selected' : '' %>
+                >International Passport</option>
+                <option value="Drivers License"
+                <%= type === 'Drivers License' ? 'selected' : '' %>
+                >Drivers License</option>
+                <option value="Others"
+                <%= type === 'Others' ? 'selected' : '' %>
+                >Others</option>
+              </select>
+            </div>
+            <div class="setting-section pb-15">
+              <label for="input7" class="form-label mb-1 tw-text-sm"
+                >Upload Document</label
+              >
+              <div class="user-setting-thumb">
+                <label for="upThumb" class="tw-group" style="width: 100%; height: 100%;">
+                <div class="user-setting-thumb-up position-relative">
+                  <div class="position-absolute d-flex justify-content-center align-items-center tw-top-0 tw-bottom-0 tw-left-0 tw-right-0 tw-bg-red1 tw-bg-opacity-10">
+                  <span class="material-icons tw-text-white group-hover:tw-text-red1">
+                    photo_camera
+                    </span>
+                  </div>
+                  <img
+                    src="<%= dataFile.imageHost %>/kyc/original/<%= image ? image : 'default.png' %>"
+                   id="imagePreview"
+                    width="100%" height="100%"
+                  />
+                </div> 
+                <input type="file" name="kyc" id="upThumb" class="d-none" accept="image/*" />
+                </label>
+              </div>
+            <button
+              type="submit"
+              class="optionalInput btn main-btn main-btn-lg full-width tw-bg-red2 my-3 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200 mb-4 sameInput"
+            >
+              Upload
+            </button>
+
+          </div>
+          <% } %>
+        </form>
+      </div>
+    </div>
+    <!-- Body-content -->
+
+    <%- include("includes/footer.ejs") %>
+    <!-- <script
+      src="/src/controllers/main/addBeneficiary.js"
+      type="module"
+    ></script> -->
+
+    <script>
+   previewImage("#upThumb", "#imagePreview");
+    </script>
+  </body>
+</html>

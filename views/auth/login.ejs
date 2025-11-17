@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <%- include("includes/head.ejs") %>
+  </head>
+
+  <body class="tw-bg-milk">
+    <!-- Start Preloader Area -->
+    <%- include("../share/preloader.ejs") %>
+    <!-- End Preloader Area -->
+
+    <!-- Start Sign In Area -->
+    <section class="sign-in-area pb-4">
+      <%- include("includes/header.ejs") %>
+      <div class="container">
+        <%- include("../share/notice.ejs") %>
+        <div id="errorMessage"></div>
+        <div class="row">
+          <div class="col-lg-6 offset-lg-3">
+            <div class="register-form">
+              <h2 class="tw-border-l-4 tw-border-red1">Sign in</h2>
+
+              <form>
+                <input
+                  type="hidden"
+                  name="_csrf"
+                  id="csrf"
+                  value="<%= csrfToken %>"
+                />
+                <div class="form-group" id="account">
+                  <label>Account number or Email</label>
+                  <input
+                    type="text"
+                    class="form-control tw-border-gray-300 tw-border-2"
+                    placeholder="A/c number or email"
+                  />
+                </div>
+                <div class="form-group" id="pass">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    class="form-control tw-border-gray-300 tw-border-2"
+                    placeholder="Password"
+                  />
+                </div>
+
+                <div class="row align-items-center">
+                  <div
+                    class="d-flex justify-content-between text-nowrap gap-2 mb-3"
+                  >
+                    <div class="form-check form-switch">
+                      <input
+                        class="form-check-input rounded-pill"
+                        type="checkbox"
+                        role="switch"
+                        id="flexSwitchCheckDefault"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="flexSwitchCheckDefault"
+                        >Remember me</label
+                      >
+                    </div>
+
+                    <a
+                      href="/forget-password"
+                      class="lost-your-password tw-hidden sm:tw-inline"
+                      >Forgot your password?</a
+                    >
+                  </div>
+                </div>
+                <a href="#">
+                  <button
+                    id="submitBtn"
+                    type="button"
+                    class="default-btn tw-bg-red2"
+                  >
+                    Sign in
+                  </button>
+                </a>
+                <div
+                  class="d-flex justify-content-center flex-column align-items-center pt-4"
+                >
+                  <a
+                    href="/forget-password"
+                    class="lost-your-password sm:tw-hidden mb-2"
+                    >Forgot your password?</a
+                  >
+                  <a class="text-center" href="/register"
+                    >Don't have an account?</a
+                  >
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Sign In Area -->
+
+    <%- include("includes/footer.ejs") %>
+    <script src="/src/controllers/auth/login.js" type="module"></script>
+  </body>
+</html>

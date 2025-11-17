@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" class="light" id="important">
+  <!-- BEGIN: Head -->
+
+  <head>
+    <%- include("includes/head-assets.ejs") %>
+  </head>
+  <!-- END: Head -->
+
+  <body class="py-5">
+    <!-- Start Preloader Area -->
+    <%- include("../share/preloader.ejs") %>
+    <!-- End Preloader Area -->
+
+    <%- include("includes/navigation.ejs") %>
+    <!-- BEGIN: Content -->
+    <div class="content">
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 mt-6">
+          <div class="intro-y block sm:flex items-center h-10">
+            <h2 class="text-lg font-medium truncate mr-5">
+              Uploaded Kyc Documents
+            </h2>
+          </div>
+          <div
+            class="intro-y overflow-x-auto overflow-y-hidden mt-8 sm:mt-2 border-t-2 border-primary"
+          >
+            <%- include("includes/notice.ejs") %>
+            <table class="table table-report sm:mt-2">
+              <thead>
+                <tr>
+                  <th class="whitespace-nowrap pl-14">USER</th>
+                  <th class="whitespace-nowrap pl-14">Status</th>
+                  <th class="whitespace-nowrap">Document Type</th>
+                  <th class="whitespace-nowrap">Action</th>
+                  <th class="text-center whitespace-nowrap">Uploaded</th>
+                </tr>
+              </thead>
+              <tbody class="whitespace-nowrap">
+                <% kyc.forEach(doc =>{ %>
+                <tr class="intro-x">
+                  <td>
+                    <div class="flex gap-3">
+                      <div
+                        class="dropdown flex items-center"
+                        data-tw-placement="bottom-start"
+                      >
+                        <a
+                          href="javascript:;"
+                          class="dropdown-toggle"
+                          aria-expanded="false"
+                          data-tw-toggle="dropdown"
+                        >
+                          <i
+                            data-lucide="more-vertical"
+                            class="block mx-auto"
+                          ></i>
+                        </a>
+                        <div class="dropdown-menu w-48">
+                          <ul class="dropdown-content border">
+                            <% if(doc.status !== 'pending'){ %>
+                            <li>
+                              <form action="/kyc/pending" method="post">
+                                <input
+                                  type="hidden"
+                                  name="_csrf"
+                                  value="<%= csrfToken %>"
+                                />
+                                <input
+                                  type="hidden"
+                                  name="id"
+                                  value="<%= doc._id %>"
+                                />
+                                <button
+                                  type="submit"
+                                  class="dropdown-item w-full"
+                                  data-id="<%= doc._id %>"
+                                >
+                                  <i
+                                    data-lucide="slash"
+                                    class="w-4 h-4 mr-2"
+                                  ></i>
+                                  Pending
+                                </button>
+                              </form>
+                            </li>
+                            <% } %> <% if(doc.status !== 'approved'){ %>
+                            <li>
+                              <form action="/kyc/approved" method="post">
+                                <input
+                                  type="hidden"
+                                  name="_csrf"
+                                  value="<%= csrfToken %>"
+                                />
+                                <input
+                                  type="hidden"
+                                  name="id"
+                                  value="<%= doc._id %>"
+                                />
+                                <button
+                                  type="submit"
+                                  class="dropdown-item w-full"
+                                  data-id="<%= doc._id %>"
+                                >
+                                  <i
+                                    data-lucide="check-circle"
+                                    class="w-4 h-4 mr-2"
+                                  ></i>
+                                  Approve
+                                </button>
+                              </form>
+                            </li>
+                            <% } %> <% if(doc.status !== 'rejected'){ %>
+                            <li>
+                              <form action="/kyc/rejected" method="post">
+                                <input
+                                  type="hidden"
+                                  name="_csrf"
+                                  value="<%= csrfToken %>"
+                                />
+                                <input
+                                  type="hidden"
+                                  name="id"
+                                  value="<%= doc._id %>"
+                                />
+                                <button
+                                  type="submit"
+                                  class="dropdown-item w-full"
+                                  data-id="<%= doc._id %>"
+                                >
+                                  <i
+                                    data-lucide="slash"
+                                    class="w-4 h-4 mr-2"
+                                  ></i>
+                                  Reject
+                                </button>
+                              </form>
+                            </li>
+                            <% } %>
+                            <li class="text-danger">
+                              <form action="/kyc/delete" method="post">
+                                <input
+                                  type="hidden"
+                                  name="_csrf"
+                                  value="<%= csrfToken %>"
+                                />
+                                <input
+                                  type="hidden"
+                                  name="id"
+                                  value="<%= doc._id %>"
+                                />
+
+                                <button
+                                  type="submit"
+                                  class="dropdown-item w-full text-danger"
+                                  data-id="<%= doc._id %>"
+                                >
+                                  <i
+                                    data-lucide="trash"
+                                    class="w-4 h-4 mr-2"
+                                  ></i>
+                                  Delete
+                                </button>
+                              </form>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="w-10 h-10 image-fit">
+                        <img
+                          alt="Midone - HTML Admin Template"
+                          class="tooltip rounded-full"
+                          src="<%= dataFile.imageHost %>/user/icon/<%= doc.user?.profile || 'default.png' %>"
+                        />
+                      </div>
+                      <div>
+                        <a
+                          href="javascript:;"
+                          class="font-medium whitespace-nowrap"
+                          ><%= helpers.toTitle(doc.user?.name || 'User Deleted')
+                          %></a
+                        >
+                        <div
+                          class="text-slate-500 text-xs whitespace-nowrap mt-0.5"
+                        >
+                          <%= doc.user?.accountNumber %>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <% if(doc.status === 'approved'){ %>
+                    <div class="flex items-center justify-center text-success">
+                      <i data-lucide="check-circle" class="w-4 h-4 mr-2"></i>
+                      Approved
+                    </div>
+                    <% } else if(doc.status === 'rejected') { %>
+                    <div class="flex items-center justify-center text-danger">
+                      <i data-lucide="slash" class="w-4 h-4 mr-2"></i>
+                      Rejected
+                    </div>
+                    <% } else { %>
+                    <div class="flex items-center justify-center text-info">
+                      <i data-lucide="circle" class="w-4 h-4 mr-2"></i>
+                      Pending
+                    </div>
+                    <% } %>
+                  </td>
+                  <td><%= helpers.toTitle(doc.type) %></td>
+                  <td>
+                    <a
+                      href="<%= dataFile.imageHost %>/kyc/original/<%= doc.image ? doc.image : 'default.png' %>"
+                      target="_blank"
+                      class="text-primary"
+                      >View Document</a
+                    >
+                  </td>
+                  <td class="text-center">
+                    <%= helpers.formatDate(doc.createdAt) %>
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include("includes/approve-modal.ejs") %> <%-
+    include("includes/cancel-modal.ejs") %> <%-
+    include("includes/delete-modal.ejs") %> <%-
+    include("includes/js-assets.ejs") %>
+    <!-- <script src="/src/controllers/admin/deposit.js" type="module"></script> -->
+    <script>
+      $(".menu.menu_kyc").addClass("menu--active");
+      $(".top-menu.menu_users").addClass("top-menu--active");
+    </script>
+  </body>
+</html>

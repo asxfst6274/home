@@ -1,0 +1,26 @@
+<!-- prettier-ignore -->
+<%
+
+const id = beneficiary._id;
+const name = beneficiary.name;
+const profile = beneficiary.profile;
+
+%>
+
+<div class="col pb-15">
+  <form action="/beneficiary/transfer" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <input type="hidden" name="beneficiaryId" value="<%= id %>" />
+    <button type="submit" class="w-100 p-0 m-0">
+      <div class="user-card tw-cursor-pointer">
+        <div class="user-card-thumb">
+          <img
+            src="<%= dataFile.imageHost %>/beneficiary/profile/<%= profile ? profile : 'default.png' %>"
+            alt="user"
+          />
+        </div>
+        <h3 class="text-capitalize text-nowrap overflow-hidden"><%= name %></h3>
+      </div>
+    </button>
+  </form>
+</div>

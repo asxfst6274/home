@@ -1,0 +1,29 @@
+<!-- prettier-ignore -->
+<%
+
+const id = notification.id;
+const subject = notification.subject;
+const date = notification.createdAt;
+const read = notification.read;
+
+const obj = JSON.stringify({...notification._doc,user:undefined});
+
+%>
+
+<div class="notification-item">
+  <div class="notification-card">
+    <!-- prettier-ignore -->
+    <a href="javascript:void(0)" class="notificationCard" data-obj='<%= obj %>'>
+      <div class="notification-card-thumb">
+        <i class="flaticon-bell"></i>
+        <% if(!read) { %>
+        <span class="option-badge" ></span>
+        <% } %>
+      </div>
+      <div class="notification-card-details">
+        <h3 class="text-capitalize"><%= subject %></h3>
+        <p><%= helpers.formatDate(date) %></p>
+      </div>
+    </a>
+  </div>
+</div>

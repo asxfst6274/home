@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("includes/head.ejs") %>
+  </head>
+
+  <body class="custom-cursor">
+    <%- include("../share/preloader.ejs") %>
+
+    <div class="page-wrapper">
+      <%- include("includes/navigation.ejs") %>
+
+      <!--Page Header Start-->
+      <section class="page-header">
+        <div
+          class="page-header__bg"
+          style="
+            background-image: url(/home/assets/images/backgrounds/breadcrumb-area-bg.jpg);
+          "
+        ></div>
+        <div class="page-header__shape-2 float-bob-x">
+          <img
+            src="/home/assets/images/shapes/page-header-shape-2.png"
+            alt=""
+          />
+        </div>
+        <div class="page-header__shape-1 float-bob-y">
+          <img
+            src="/home/assets/images/shapes/page-header-shape-1.png"
+            alt=""
+          />
+        </div>
+        <div class="page-header__shape-3 float-bob-x">
+          <img
+            src="/home/assets/images/shapes/page-header-shape-3.png"
+            alt=""
+          />
+        </div>
+        <div class="container">
+          <div class="page-header__inner">
+            <h2>FAQs</h2>
+            <div class="thm-breadcrumb__inner">
+              <ul class="thm-breadcrumb list-unstyled">
+                <li><a href="/">Home</a></li>
+                <li><span>/</span></li>
+                <li>FAQs</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Page Header End-->
+
+      <!--Feature Three Start-->
+      <section class="feature-three">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-2 col-lg-3 col-md-6">
+              <div class="feature-three__single">
+                <div class="feature-three__icon">
+                  <span class="icon-handshake"></span>
+                </div>
+                <h3 class="feature-three__title">Consulting</h3>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-6">
+              <div class="feature-three__single">
+                <div class="feature-three__icon">
+                  <span class="icon-coins"></span>
+                </div>
+                <h3 class="feature-three__title">General</h3>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-6">
+              <div class="feature-three__single">
+                <div class="feature-three__icon">
+                  <span class="icon-bonus"></span>
+                </div>
+                <h3 class="feature-three__title">Finance</h3>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-6">
+              <div class="feature-three__single">
+                <div class="feature-three__icon">
+                  <span class="icon-entrepreneur"></span>
+                </div>
+                <h3 class="feature-three__title">Experts</h3>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-6">
+              <div class="feature-three__single">
+                <div class="feature-three__icon">
+                  <span class="icon-fingerprint-scan"></span>
+                </div>
+                <h3 class="feature-three__title">Legal</h3>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-6">
+              <div class="feature-three__single">
+                <div class="feature-three__icon">
+                  <span class="icon-account"></span>
+                </div>
+                <h3 class="feature-three__title">Account</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Feature Three End-->
+
+      <!--Start Faq Style1 Area-->
+      <%- include("includes/faq.ejs") %>
+      <!--End Faq Style1 Area-->
+
+      <!--Site Footer Start-->
+      <%- include("includes/footer.ejs") %>
+      <!--Site Footer End-->
+    </div>
+    <!-- /.page-wrapper -->
+
+    <%- include("includes/bottom.ejs") %>
+  </body>
+</html>

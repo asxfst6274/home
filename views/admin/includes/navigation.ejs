@@ -1,0 +1,348 @@
+<!-- BEGIN: Mobile Menu -->
+<div class="mobile-menu md:hidden">
+  <div class="mobile-menu-bar">
+    <a href="/" class="flex mr-auto">
+      <img alt="" class="h-9" src="<%= dataFile.logo2 %>" />
+    </a>
+    <a href="javascript:;" class="mobile-menu-toggler">
+      <i
+        data-lucide="bar-chart-2"
+        class="w-8 h-8 text-white transform -rotate-90"
+      ></i>
+    </a>
+  </div>
+  <div class="scrollable">
+    <a href="javascript:;" class="mobile-menu-toggler">
+      <i
+        data-lucide="x-circle"
+        class="w-8 h-8 text-white transform -rotate-90"
+      ></i>
+    </a>
+    <ul class="scrollable__content py-2">
+      <div
+        class="rounded-full my-4 p-3 mx-3 border-2 border-milk flex gap-3 bg-dark bg-opacity-50"
+      >
+        <div class="intro-x w-8 h-8">
+          <div
+            class="w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110"
+          >
+            <img
+              alt=""
+              src="<%= dataFile.imageHost %>/user/icon/<%= cUser.profile ? cUser.profile : 'default.png' %>"
+            />
+          </div>
+        </div>
+        <div>
+          <div class="text-white font-semibold">
+            <%= helpers.toTitle(cUser.name) %>
+          </div>
+          <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">
+            Admin
+          </div>
+        </div>
+        <div class="intro-x w-8 h-8 ml-auto flex flex-col items-center">
+          <div>
+            <a href="/go-user">
+              <div
+                class="w-5 h-5 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110"
+              >
+                <img
+                  alt=""
+                  src="<%= dataFile.imageHost %>/user/icon/<%= cUser.profile ? cUser.profile : 'default.png' %>"
+                />
+              </div>
+            </a>
+          </div>
+          <p class="text-xs text-white/60">user</p>
+        </div>
+      </div>
+      <div class="rounded-xl bg-milk py-3 mx-3 shadow-xl">
+        <li>
+          <a href="/" class="menu menu_dashbaord">
+            <div class="menu__icon"><i data-lucide="home"></i></div>
+            <div class="menu__title">Dashboard</div>
+          </a>
+        </li>
+        <li>
+          <a
+            href="javascript:;"
+            class="menu menu_user menu_customers menu_admin"
+          >
+            <div class="menu__icon"><i data-lucide="users"></i></div>
+            <div class="menu__title">
+              Users <i data-lucide="chevron-down" class="menu__sub-icon"></i>
+            </div>
+          </a>
+          <ul class="">
+            <li>
+              <a href="/users" class="menu menu_customers">
+                <div class="menu__icon"><i data-lucide="user"></i></div>
+                <div class="menu__title">Customers</div>
+              </a>
+            </li>
+            <li>
+              <a href="/user-kyc" class="menu menu_kyc">
+                <div class="menu__icon"><i data-lucide="user"></i></div>
+                <div class="menu__title">Uploaded Kyc</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            href="javascript:;"
+            class="menu menu_transactions menu_transfer menu_deposits menu_savings menu_billings"
+          >
+            <div class="menu__icon"><i data-lucide="refresh-cw"></i></div>
+            <div class="menu__title">
+              Transactions
+              <i data-lucide="chevron-down" class="menu__sub-icon"></i>
+            </div>
+          </a>
+          <ul class="">
+            <li>
+              <a href="/transfers" class="menu menu_transfer">
+                <div class="menu__icon"><i data-lucide="send"></i></div>
+                <div class="menu__title">Transfers</div>
+              </a>
+            </li>
+            <li>
+              <a href="/deposits" class="menu menu_deposits">
+                <div class="menu__icon"><i data-lucide="log-in"></i></div>
+                <div class="menu__title">Deposits</div>
+              </a>
+            </li>
+            <li>
+              <a href="/users-loans" class="menu menu_loans">
+                <div class="menu__icon"><i data-lucide="log-in"></i></div>
+                <div class="menu__title">Loans</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            href="javascript:;"
+            class="menu menu_extra menu_beneficiaries menu_savings_plans menu_deposit_coin menu_bank_cards menu_bills menu_blogs menu_support"
+          >
+            <div class="menu__icon"><i data-lucide="box"></i></div>
+            <div class="menu__title">
+              Extra <i data-lucide="chevron-down" class="menu__sub-icon"></i>
+            </div>
+          </a>
+          <ul class="">
+            <li>
+              <a href="/deposit-methods" class="menu menu_deposit_coin">
+                <div class="menu__icon"><i data-lucide="stop-circle"></i></div>
+                <div class="menu__title">Deposit Coins</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            href="javascript:;"
+            class="menu menu_settings menu_admin_profile menu_site_config"
+          >
+            <div class="menu__icon"><i data-lucide="settings"></i></div>
+            <div class="menu__title">
+              Settings <i data-lucide="chevron-down" class="menu__sub-icon"></i>
+            </div>
+          </a>
+          <ul class="">
+            <li>
+              <a href="/settings" class="menu menu_site_config">
+                <div class="menu__icon"><i data-lucide="settings"></i></div>
+                <div class="menu__title">Site Configuration</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="/logout" class="menu border-b-0">
+            <div class="menu__icon"><i data-lucide="log-out"></i></div>
+            <div class="menu__title">Logout</div>
+          </a>
+        </li>
+      </div>
+    </ul>
+  </div>
+</div>
+<!-- END: Mobile Menu -->
+<!-- BEGIN: Top Bar -->
+<div
+  class="border-b border-white/[0.08] mt-[2.2rem] md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 pt-3 md:pt-0 mb-10"
+>
+  <div class="top-bar-boxed flex items-center">
+    <!-- BEGIN: Logo -->
+    <a href="/" class="-intro-x hidden md:flex">
+      <img alt="" class="h-10" src="<%= dataFile.logo2 %>" />
+    </a>
+    <!-- END: Logo -->
+    <!-- BEGIN: Breadcrumb -->
+    <nav aria-label="breadcrumb" class="-intro-x h-full mr-auto">
+      <ol class="breadcrumb breadcrumb-light">
+        <li class="breadcrumb-item"><a href="javascript:;">Application</a></li>
+        <% if(breadcrumb2.length){ %>
+        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+        <li class="breadcrumb-item">
+          <a href="<%= breadcrumb1[1] %>"><%= breadcrumb1[0] %></a>
+        </li>
+        <li class="breadcrumb-item active"><%= breadcrumb2[0] %></li>
+        <% } else if(breadcrumb1.length){ %>
+        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+        <li class="breadcrumb-item active"><%= breadcrumb1[0] %></li>
+        <% } else { %>
+        <li class="breadcrumb-item active">Dashboard</li>
+        <% } %>
+      </ol>
+    </nav>
+    <!-- END: Breadcrumb -->
+    <!-- BEGIN: Search -->
+    <div class="intro-x relative mr-3 sm:mr-6 hidden md:flex">
+      <div class="search hidden sm:block">
+        <input
+          type="text"
+          class="search__input form-control border-transparent"
+          placeholder="Search..."
+        />
+        <i data-lucide="search" class="search__icon dark:text-slate-500"></i>
+      </div>
+      <a class="notification notification--light sm:hidden" href="">
+        <i
+          data-lucide="search"
+          class="notification__icon dark:text-slate-500"
+        ></i>
+      </a>
+    </div>
+    <!-- END: Search -->
+    <!-- BEGIN: Notifications -->
+    <div class="intro-x mr-4 sm:mr-6 hidden md:flex">
+      <div
+        class="notification notification--light notification--bullet cursor-pointer"
+      >
+        <i
+          data-lucide="bell"
+          class="notification__icon dark:text-slate-500"
+        ></i>
+      </div>
+    </div>
+    <!-- END: Notifications -->
+    <!-- BEGIN: Account Menu -->
+    <div class="intro-x w-8 h-8 hidden md:flex">
+      <div
+        class="w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110"
+      >
+        <a href="/go-user">
+          <img
+            alt=""
+            src="<%= dataFile.imageHost %>/user/icon/<%= cUser.profile ? cUser.profile : 'default.png' %>"
+          />
+        </a>
+      </div>
+    </div>
+    <!-- END: Account Menu -->
+  </div>
+</div>
+<!-- END: Top Bar -->
+<!-- BEGIN: Top Menu -->
+<nav class="top-nav">
+  <ul>
+    <li>
+      <a href="/" class="top-menu menu_dashbaord">
+        <div class="top-menu__icon"><i data-lucide="home"></i></div>
+        <div class="top-menu__title">Dashboard</div>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;" class="top-menu menu_user">
+        <div class="top-menu__icon"><i data-lucide="users"></i></div>
+        <div class="top-menu__title">
+          Users <i data-lucide="chevron-down" class="top-menu__sub-icon"></i>
+        </div>
+      </a>
+      <ul class="">
+        <li>
+          <a href="/users" class="top-menu menu_customers">
+            <div class="top-menu__icon"><i data-lucide="user"></i></div>
+            <div class="top-menu__title">Customers</div>
+          </a>
+        </li>
+        <li>
+          <a href="/user-kyc" class="top-menu menu_kyc">
+            <div class="top-menu__icon"><i data-lucide="user"></i></div>
+            <div class="top-menu__title">Uploaded Kyc</div>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="javascript:;" class="top-menu menu_transactions">
+        <div class="top-menu__icon"><i data-lucide="refresh-cw"></i></div>
+        <div class="top-menu__title">
+          Transactions
+          <i data-lucide="chevron-down" class="top-menu__sub-icon"></i>
+        </div>
+      </a>
+      <ul class="">
+        <li>
+          <a href="/transfers" class="top-menu menu_transfer">
+            <div class="top-menu__icon"><i data-lucide="send"></i></div>
+            <div class="top-menu__title">Transfers</div>
+          </a>
+        </li>
+        <li>
+          <a href="/deposits" class="top-menu menu_deposits">
+            <div class="top-menu__icon"><i data-lucide="log-in"></i></div>
+            <div class="top-menu__title">Deposits</div>
+          </a>
+        </li>
+        <li>
+          <a href="/users-loans" class="top-menu menu_loans">
+            <div class="top-menu__icon"><i data-lucide="log-in"></i></div>
+            <div class="top-menu__title">Loans</div>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="javascript:;" class="top-menu menu_extra">
+        <div class="top-menu__icon"><i data-lucide="box"></i></div>
+        <div class="top-menu__title">
+          Extra<i data-lucide="chevron-down" class="top-menu__sub-icon"></i>
+        </div>
+      </a>
+      <ul class="">
+        <li>
+          <a href="/deposit-methods" class="top-menu menu_savings_plans">
+            <div class="top-menu__icon"><i data-lucide="stop-circle"></i></div>
+            <div class="top-menu__title">Deposit Coins</div>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="javascript:;" class="top-menu menu_settings">
+        <div class="top-menu__icon"><i data-lucide="settings"></i></div>
+        <div class="top-menu__title">
+          Settings<i data-lucide="chevron-down" class="top-menu__sub-icon"></i>
+        </div>
+      </a>
+      <ul class="">
+        <li>
+          <a href="/settings" class="top-menu menu_site_config">
+            <div class="top-menu__icon"><i data-lucide="settings"></i></div>
+            <div class="top-menu__title">Site Configuration</div>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="/logout" class="top-menu">
+        <div class="top-menu__icon"><i data-lucide="log-out"></i></div>
+        <div class="top-menu__title">Logout</div>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- END: Top Menu -->

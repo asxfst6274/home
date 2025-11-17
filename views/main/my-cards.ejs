@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <%- include("includes/head.ejs") %>
+
+  <body>
+    <%- include("includes/navigation.ejs") %>
+
+    <!-- Body-content -->
+    <div class="body-content">
+      <div class="mobile-screen">
+        <%- include("../share/notice.ejs") %>
+        <div
+          class="section-header d-block tw-border-b-4 tw-border-red1 mb-3 pb-2"
+        >
+          <h2 class="text-center">My Cards</h2>
+        </div>
+        <div class="page-header-action mb-3 d-flex justify-content-center">
+          <a
+            href="/add-card"
+            class="p-2 tw-border-2 tw-border-redLight d-inline-flex rounded"
+          >
+            <i class="flaticon-plus"></i>
+            <p>Add A New Card</p>
+          </a>
+        </div>
+        <!-- Card-section -->
+        <div class="card-section mb-4">
+          <div class="row g-3">
+            <!-- prettier-ignore -->
+            <% cards.forEach(card =>{ %>
+              <%- include("components/paymentCard.ejs",{card}) %>
+            <% }) %>
+          </div>
+        </div>
+        <!-- Card-section -->
+      </div>
+      <% if(!cards.length){ %>
+      <h2 class="text-center mt-5 tw-text-slate-500">
+        You haven't added a card yet :(
+      </h2>
+      <% } %>
+    </div>
+    <!-- Body-content -->
+
+    <!-- Delete-card-modal -->
+    <%- include("components/paymentCardDelete.ejs") %>
+    <!-- Delete-card-modal -->
+
+    <%- include("includes/footer.ejs") %>
+    <script src="/src/controllers/main/cards.js" type="module"></script>
+  </body>
+</html>

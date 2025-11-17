@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" class="light" id="important">
+  <!-- BEGIN: Head -->
+
+  <head>
+    <%- include("includes/head-assets.ejs") %>
+  </head>
+  <!-- END: Head -->
+
+  <body class="py-5">
+    <!-- Start Preloader Area -->
+    <%- include("../share/preloader.ejs") %>
+    <!-- End Preloader Area -->
+
+    <%- include("includes/navigation.ejs") %>
+    <!-- BEGIN: Content -->
+    <div class="content">
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 mt-6">
+          <div class="intro-y block sm:flex items-center h-10">
+            <h2 class="text-lg font-medium truncate mr-5">Users Loans</h2>
+          </div>
+          <div
+            class="intro-y overflow-x-auto overflow-y-hidden mt-8 sm:mt-2 border-t-2 border-primary"
+          >
+            <%- include("includes/notice.ejs") %>
+            <table class="table table-report sm:mt-2">
+              <thead>
+                <tr>
+                  <th class="whitespace-nowrap pl-14">USER</th>
+                  <th class="whitespace-nowrap">TITLE</th>
+                  <th class="text-center whitespace-nowrap">AMOUNT</th>
+                  <th class="text-center whitespace-nowrap">INTEREST</th>
+                  <th class="text-center whitespace-nowrap">TOTAL</th>
+                  <th class="text-center whitespace-nowrap">TOTAL PAID</th>
+                  <th class="text-center whitespace-nowrap">STATUS</th>
+                  <th class="text-center whitespace-nowrap">REGISTERED</th>
+                </tr>
+              </thead>
+              <tbody class="whitespace-nowrap">
+                <% loans.forEach(loan =>{
+
+                <!--  -->
+                <!--  -->
+                const id = loan._id;
+                <!--  -->
+                const date = loan.createdAt;
+                <!--  -->
+                const title = loan.title;
+                <!--  -->
+                const amount = loan.amount;
+                <!--  -->
+                const status = loan.status;
+                <!--  -->
+                const paid = loan.paid;
+                <!--  -->
+                const interest = (status === 'settled' && paid - amount > 0) ?
+                paid - amount : helpers.getLoanInterest(amount,loan.approved ||
+                new Date()); %>
+                <tr class="intro-x">
+                  <td>
+                    <div class="flex gap-3">
+                      <div
+                        class="dropdown flex items-center"
+                        data-tw-placement="bottom-start"
+                      >
+                        <a
+                          href="javascript:;"
+                          class="dropdown-toggle"
+                          aria-expanded="false"
+                          data-tw-toggle="dropdown"
+                        >
+                          <i
+                            data-lucide="more-vertical"
+                            class="block mx-auto"
+                          ></i>
+                        </a>
+                        <div class="dropdown-menu w-48">
+                          <ul class="dropdown-content border">
+                            <% if(loan.status === 'pending'){ %>
+                            <li>
+                              <a
+                                href="javascript:;"
+                                class="dropdown-item approveBtn"
+                                data-id="<%= loan._id %>"
+                              >
+                                <i
+                                  data-lucide="check-circle"
+                                  class="w-4 h-4 mr-2"
+                                ></i>
+                                Approve</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:;"
+                                class="dropdown-item cancelBtn"
+                                data-id="<%= loan._id %>"
+                              >
+                                <i data-lucide="slash" class="w-4 h-4 mr-2"></i>
+                                Deny</a
+                              >
+                            </li>
+                            <% } %>
+                            <li class="text-danger">
+                              <a
+                                href="javascript:;"
+                                class="dropdown-item deleteBtn"
+                                data-id="<%= loan._id %>"
+                              >
+                                <i data-lucide="trash" class="w-4 h-4 mr-2"></i>
+                                Delete</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="w-10 h-10 image-fit">
+                        <img
+                          class="tooltip rounded-full"
+                          src="<%= dataFile.imageHost %>/user/icon/<%= loan.user?.profile || 'default.png' %>"
+                        />
+                      </div>
+                      <div>
+                        <a
+                          href="javascript:;"
+                          class="font-medium whitespace-nowrap"
+                          ><%= helpers.toTitle(loan.user?.name || 'User
+                          Deleted') %>
+                        </a>
+                        <div
+                          class="text-slate-500 text-xs whitespace-nowrap mt-0.5"
+                        >
+                          <%= loan.user?.accountNumber %>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><%= helpers.toTitle(loan.title) %></td>
+                  <td class="text-center">
+                    <%= helpers.dollar(loan.amount) %>
+                  </td>
+                  <td class="text-center"><%= helpers.dollar(interest) %></td>
+                  <td class="text-center">
+                    <%= helpers.dollar(loan.amount + interest) %>
+                  </td>
+                  <td class="text-center"><%= helpers.dollar(loan.paid) %></td>
+                  <td>
+                    <% if(loan.status === 'approved'){ %>
+                    <div class="flex items-center justify-center text-success">
+                      <i data-lucide="check-circle" class="w-4 h-4 mr-2"></i>
+                      Approved
+                    </div>
+                    <% } else if(loan.status === 'denied') { %>
+                    <div class="flex items-center justify-center text-danger">
+                      <i data-lucide="slash" class="w-4 h-4 mr-2"></i>
+                      Denied
+                    </div>
+                    <% } else { %>
+                    <div class="flex items-center justify-center text-info">
+                      <i data-lucide="circle" class="w-4 h-4 mr-2"></i>
+                      Pending
+                    </div>
+                    <% } %>
+                  </td>
+                  <td class="text-center">
+                    <%= helpers.formatDate(loan.createdAt) %>
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include("includes/approve-modal.ejs") %> <%-
+    include("includes/cancel-modal.ejs") %> <%-
+    include("includes/delete-modal.ejs") %> <%-
+    include("includes/js-assets.ejs") %>
+    <script src="/src/controllers/admin/loan.js" type="module"></script>
+    <script>
+      $(".menu.menu_loans").addClass("menu--active");
+      $(".top-menu.menu_loans").addClass("top-menu--active");
+    </script>
+  </body>
+</html>

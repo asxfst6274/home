@@ -1,0 +1,90 @@
+<div
+  class="modal fade"
+  id="savings-details"
+  tabindex="-1"
+  aria-labelledby="savings-details"
+  aria-hidden="true"
+>
+  <div data-bs-toggle="modal" data-bs-target="#savings-details"></div>
+  <div class="modal-dialog">
+    <div class="modal-content mobile-screen px-0">
+      <div class="container">
+        <div class="modal-header py-3">
+          <div class="modal-header-title">
+            <h5 class="modal-title">Savings</h5>
+          </div>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <span class="material-icons pt-3">close</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div
+            class="progress-info-text d-flex flex-column align-items-center mb-2"
+          >
+            <h3 class="mb-0 text-capitalize" id="title">Title</h3>
+            <p id="category" class="text-capitalize">category</p>
+          </div>
+          <div
+            id="progress"
+            class="circular-progress d-flex justify-content-center"
+            data-note="25"
+          >
+            <svg width="110" height="110" class="circle-svg">
+              <circle
+                cx="56"
+                cy="54"
+                r="50"
+                class="circle-progress circle-progress-path"
+              ></circle>
+              <circle
+                id="circle"
+                cx="56"
+                cy="54"
+                r="50"
+                class="circle-progress circle-progress-fill"
+              ></circle>
+            </svg>
+            <div class="percent"><span class="percent-int">0</span>%</div>
+          </div>
+          <div class="d-flex justify-content-center fw-bold mb-4">
+            <p>
+              <span class="" id="saved">$0</span> /
+              <span id="target">$0</span>
+            </p>
+          </div>
+          <form action="/savings/add-money" method="post">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <input type="hidden" name="savingsId" class="savingsId" />
+            <div class="form-group mb-15" id="amount">
+              <input
+                name="amount"
+                type="number"
+                class="form-control tw-border-gray-300"
+                placeholder="Add to savings"
+              />
+              <div class="message"></div>
+            </div>
+            <button
+              type="submit"
+              class="btn main-btn main-btn-lg full-width tw-bg-green-600 mb-2 tw-text-sm"
+            >
+              Add To Savings
+            </button>
+            <button
+              id="close-savings"
+              type="button"
+              class="btn main-btn main-btn-lg full-width tw-bg-red1 mb-4 tw-text-sm"
+            >
+              Close Savings
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

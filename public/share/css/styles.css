@@ -1,0 +1,129 @@
+:root {
+  --thm-font: "Manrope", sans-serif;
+  --thm-font-2: "DM Sans", sans-serif;
+  --thm-base: #cf173c;
+  --thm-base-rgb: 207, 23, 60;
+  --thm-gray: #7f7873;
+  --thm-gray-rgb: 127, 120, 115;
+  --thm-white: #ffffff;
+  --thm-white-rgb: 255, 255, 255;
+  --thm-black: #1a1c23;
+  --thm-black-rgb: 26, 28, 35;
+  --thm-primary: #ffb400;
+  --thm-primary-rgb: 255, 180, 0;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea,
+.nice-select {
+  border-radius: 0px !important;
+  padding-right: 15px !important;
+  padding-left: 15px !important;
+}
+.gradient {
+  background-image: -moz-linear-gradient(0deg, #0f213c 0%, #193155 100%);
+  background-image: -webkit-linear-gradient(0deg, #0f213c 0%, #193155 100%);
+  background-image: -ms-linear-gradient(0deg, #0f213c 0%, #193155 100%);
+}
+
+.form-check-input:checked {
+  background-color: var(--thm-base);
+  border-color: var(--thm-base);
+}
+
+.minimize .register-form form .nice-select .current {
+  display: inline-block;
+  max-width: 85px;
+  overflow: hidden;
+}
+
+.register-form form .nice-select .list {
+  min-width: 150px;
+}
+
+.register-form form .nice-select .list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.tw-stroke-stone-600 {
+  stroke: #57534e !important;
+}
+
+.tw-stroke-yellow-600 {
+  stroke: #ca8a04 !important;
+}
+
+.tw-stroke-pink-600 {
+  stroke: #db2777 !important;
+}
+
+.tw-stroke-violet-600 {
+  stroke: #7c3aed !important;
+}
+
+.tw-stroke-green-600 {
+  stroke: #16a34a !important;
+}
+
+.tw-stroke-slate-600 {
+  stroke: #475569 !important;
+}
+
+.tw-stroke-orange-600 {
+  stroke: #ea580c !important;
+}
+
+.tw-stroke-red-600 {
+  stroke: #dc2626 !important;
+}
+
+.tw-stroke-blue-600 {
+  stroke: #2563eb !important;
+}
+
+.tw-text-stone-600 {
+  color: #57534e !important;
+}
+
+.tw-text-yellow-600 {
+  color: #ca8a04 !important;
+}
+
+.tw-text-pink-600 {
+  color: #db2777 !important;
+}
+
+.tw-text-violet-600 {
+  color: #7c3aed !important;
+}
+
+.tw-text-green-600 {
+  color: #16a34a !important;
+}
+
+.tw-text-slate-600 {
+  color: #475569 !important;
+}
+
+.tw-text-orange-600 {
+  color: #ea580c !important;
+}
+
+.tw-text-red-600 {
+  color: #dc2626 !important;
+}
+
+.tw-text-blue-600 {
+  color: #2563eb !important;
+}
+
+.text-elipsis {
+  width: calc(100vw / 4);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

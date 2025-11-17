@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <%- include("includes/head.ejs") %>
+
+  <body>
+    <%- include("includes/navigation.ejs") %>
+
+    <!-- Body-content -->
+    <div class="body-content">
+      <div class="mobile-screen">
+        <%- include("../share/notice.ejs") %>
+        <div
+          class="section-header d-block tw-border-b-4 tw-border-red1 mb-3 pb-2"
+        >
+          <h2 class="text-center">Deposit</h2>
+        </div>
+        <form>
+          <div class="bg-white p-3 rounded shadow mb-4">
+            <div class="form-group mb-15" id="deposit">
+              <label class="form-label mb-1 tw-text-sm">Deposit mode</label>
+              <select
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="depositMode"
+              >
+                <option value="crypto">Cryptocurrency</option>
+                <!-- <option value="bank">Bank Transfer</option> -->
+              </select>
+            </div>
+            <div class="form-group mb-15 optionalInput cryptoInput">
+              <label class="form-label mb-1 tw-text-sm">Coin</label>
+              <select
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm text-capitalize"
+                id="coin"
+              >
+                <% cryptos.forEach(crypto =>{ %>
+                <option
+                  value="<%= crypto.coin %>,,,<%= crypto.wallet %>,,,<%= crypto._id %>,,,<%= crypto.network %>"
+                  class="text-capitalize"
+                >
+                  <%= crypto.coin %>
+                </option>
+                <% }) %>
+              </select>
+            </div>
+            <div
+              class="form-group mb-15 optionalInput cryptoInput"
+              id="network"
+            >
+              <label for="input8" class="form-label mb-1 tw-text-sm"
+                >Coin Network</label
+              >
+              <input
+                name="network"
+                type="text"
+                class="form-control network tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input8"
+                placeholder="Coin network"
+                disabled
+              />
+              <div class="message"></div>
+            </div>
+            <div class="form-group mb-15 optionalInput cryptoInput" id="amount">
+              <label for="input8" class="form-label mb-1 tw-text-sm"
+                >Enter amount</label
+              >
+              <input
+                name="amount"
+                type="number"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input8"
+                placeholder="Enter amount"
+              />
+              <div class="message"></div>
+            </div>
+            <div class="form-group mb-15 optionalInput bankInput">
+              <label for="input1" class="form-label mb-1 tw-text-sm"
+                >Bank Name</label
+              >
+              <input
+                type="text"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input1"
+                value="<%= dataFile.name %>"
+                disabled
+              />
+            </div>
+            <div class="form-group mb-15 optionalInput bankInput">
+              <label for="input7" class="form-label mb-1 tw-text-sm"
+                >Routing Number</label
+              >
+              <input
+                type="number"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input7"
+                value="<%= dataFile.routing %>"
+                disabled
+              />
+            </div>
+            <div class="form-group mb-15 optionalInput bankInput">
+              <label for="input2" class="form-label mb-1 tw-text-sm"
+                >Account Number</label
+              >
+              <input
+                type="number"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input2"
+                value="<%= cUser.accountNumber %>"
+                disabled
+              />
+            </div>
+            <div class="form-group mb-15 optionalInput bankInput">
+              <label for="input3" class="form-label mb-1 tw-text-sm"
+                >Name</label
+              >
+              <input
+                type="text"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm text-capitalize"
+                id="input3"
+                value="<%= cUser.name %>"
+                disabled
+              />
+            </div>
+            <button
+              id="submitBtn"
+              type="button"
+              class="btn main-btn main-btn-lg full-width tw-bg-red2 my-3 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200 optionalInput cryptoInput"
+            >
+              Get Wallet
+            </button>
+            <p class="text-center optionalInput bankInput mb-4">
+              Make a bank transfer to your following account details above
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Body-content -->
+
+    <!-- cryptoDeposit-modal -->
+    <div
+      class="modal fade"
+      id="cryptoDeposit"
+      tabindex="-1"
+      aria-labelledby="cryptoDeposit"
+      aria-hidden="true"
+    >
+      <div data-bs-toggle="modal" data-bs-target="#cryptoDeposit"></div>
+      <div class="modal-dialog modal-dialog-centered round">
+        <div class="modal-content modal-screen tw-px-[1.5rem]">
+          <div class="">
+            <div class="text-center calculator-inner" id="make-pay">
+              <P class="tw-text-lg">
+                SEND
+                <span class="tw-text-red1 tw-font-semibold amount"></span>
+                TO YOUR
+                <span
+                  class="tw-text-red1 text-uppercase coin tw-font-semibold"
+                ></span>
+                WALLET ADDRESS BELOW AND CLICK CONFIRM WHEN DONE
+              </P>
+              <div class="tw-flex justify-content-center pt-3">
+                <input
+                  type="text"
+                  id="coin-address"
+                  class="form-input mb-0 tw-w-[100%] tw-max-w-[400px] bg-white border"
+                  disabled
+                />
+                <button class="btn tw-bg-red1 text-white copy-address">
+                  <span class="material-icons"> file_copy </span>
+                </button>
+              </div>
+              <div class="d-flex justify-content-center mt-4">
+                <div class="p-3 tw-bg-dark tw-bg-opacity-50 tw-rounded-md">
+                  <div class="spinner-border text-light" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              </div>
+              <!-- <p class="tw-font-semibold tw-text-xl mt-4 mb-2">29:54</p> -->
+              <p class="mt-4">Awaiting payment...</p>
+              <form action="/deposit" method="post">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                <input type="hidden" class="coinId" name="coinId" />
+                <input type="hidden" class="amount" name="amount" />
+                <button
+                  type="submit"
+                  class="btn main-btn main-btn-lg full-width tw-bg-red1 mt-3 mb-2 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200"
+                >
+                  Confirm
+                </button>
+              </form>
+              <button
+                data-bs-dismiss="modal"
+                type="button"
+                class="btn main-btn main-btn-lg full-width tw-bg-red2 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- cryptoDeposit-modal -->
+
+    <%- include("includes/footer.ejs") %>
+    <script src="/src/controllers/main/deposit.js" type="module"></script>
+  </body>
+</html>

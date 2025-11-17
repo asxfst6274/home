@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <%- include("includes/head.ejs") %>
+
+  <body>
+    <%- include("includes/navigation.ejs") %>
+    <!--  -->
+
+    <!-- Body-content -->
+    <div class="body-content">
+      <div class="mobile-screen">
+        <%- include("../share/notice.ejs") %>
+        <div
+          class="section-header d-block tw-border-b-4 tw-border-red1 mb-3 pb-2"
+        >
+          <h2 class="text-center">Loan Applications</h2>
+        </div>
+        <div class="page-header-action mb-3 d-flex justify-content-center">
+          <a
+            href="/request-loan"
+            class="p-2 tw-border-2 tw-border-redLight d-inline-flex rounded"
+          >
+            <i class="flaticon-plus"></i>
+            <p>Request A Loan</p>
+          </a>
+        </div>
+        <!-- Saving-goals-section -->
+        <div class="saving-goals-section">
+          <%- include("components/loans.ejs") %>
+        </div>
+        <!-- Saving-goals-section -->
+      </div>
+      <% if(!loans.length){ %>
+      <h2 class="text-center mt-5 tw-text-slate-500">
+        You Haven't Request A Loan Yet
+      </h2>
+      <% } %>
+    </div>
+    <!-- Body-content -->
+
+    <!-- loan-details-modal -->
+    <%- include("components/loanModal.ejs") %> <%-
+    include("components/loanDetailsModal.ejs") %>
+    <!-- loan-modal -->
+
+    <%- include("includes/footer.ejs") %>
+    <script src="/src/controllers/main/loans.js" type="module"></script>
+  </body>
+</html>

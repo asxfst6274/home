@@ -1,0 +1,45 @@
+<!-- prettier-ignore -->
+<%
+const id = transaction._id;
+const type = transaction.type;
+const name = transaction.name;
+const amount = transaction.amount;
+const profile = transaction.profile ? transaction.profile : type === 'deposit' ? 'deposit.png' : "default.png";
+const move = transaction.move;
+const status = transaction.status;
+
+const obj = JSON.stringify({...transaction._doc,user:undefined});
+
+
+%>
+<!-- prettier-ignore -->
+<div class="transaction-card mb-2 border tw-border-b-4" >
+  <a
+    href="javascript:void(0)"
+    data-obj='<%= obj %>'
+    class="transactionObj"
+  >
+    <div class="transaction-card-info">
+      <div class="transaction-info-thumb">
+        <img
+          src="<%= dataFile.imageHost %>/<%= profile.startsWith('beneficiary') ? 'beneficiary' : profile.startsWith('user') ? 'user' : 'transaction' %>/profile/<%= profile %>"
+          alt="user"
+        />
+      </div>
+      <div class="transaction-info-text">
+        <h3 class="text-capitalize"><%= name %>
+            <% if(status === "ongoing"){ %>
+            <span class="badge bg-warning ms-2"><%= status %></span>
+            <% } %>
+            <% if(status === "cancelled"){ %>
+            <span class="badge bg-danger ms-2">Failed</span>
+            <% } %>
+        </h3>
+        <p class="text-capitalize"><%= type %></p>
+      </div>
+    </div>
+    <div class="transaction-card-det <%= move !== 'credit' ? 'text-danger' : ''  %>">
+      <%= helpers.dollar(move !== 'credit' ? -amount : amount) %>
+    </div>
+  </a>
+</div>

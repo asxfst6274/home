@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <%- include("includes/head.ejs") %>
+
+  <body>
+    <%- include("includes/navigation.ejs") %>
+
+    <!-- Body-content -->
+    <div class="body-content">
+      <div class="mobile-screen">
+        <%- include("../share/notice.ejs") %>
+        <div
+          class="section-header d-block tw-border-b-4 tw-border-red1 mb-3 pb-2"
+        >
+          <h2 class="text-center"><%= editing ? 'Edit' : 'Add New' %> Beneficiary</h2>
+        </div>
+        <form method="post" action="/beneficiary/<%= editing ? 'edit' : 'create' %>?_csrf=<%= csrfToken %>" enctype="multipart/form-data">
+          <input
+            type="hidden"
+            name="_csrf"
+            id="csrf"
+            value="<%= csrfToken %>"
+          />
+          <input
+            type="hidden"
+            name="id"
+            id="beneficiaryId"
+            value="<%= editing ? id : '' %>"
+          />
+          <div class="bg-white p-3 rounded shadow mb-4">
+            <div class="form-group mb-15" id="account">
+              <label class="form-label mb-1 tw-text-sm" for="accountMode">Account Mode</label>
+              <select
+                id="accountMode"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                name="accountMode"
+              >
+                <option value="same"
+                <%= accountMode === 'same' ? 'selected' : '' %> 
+                > 
+                <%= dataFile.name %></option>
+                <option value="others"
+                <%= accountMode === 'others' ? 'selected' : '' %>
+                >Other Banks</option>
+                <option value="crypto"
+                <%= accountMode === 'crypto' ? 'selected' : '' %>
+                >Cryptocurrency</option>
+                <option value="paypal"
+                <%= accountMode === 'paypal' ? 'selected' : '' %>
+                >Paypal</option>
+                <option value="cashApp"
+                <%= accountMode === 'cashApp' ? 'selected' : '' %>
+                >Cash App</option>
+              </select>
+            </div>
+            <div class="form-group mb-15 optionalInput othersInput" id="bank"> 
+              <label for="input1" class="form-label mb-1 tw-text-sm"
+                >Beneficiary's Bank Name</label
+              >
+              <input
+                name="bank"
+                type="text"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input1"
+                placeholder="Bank Name"
+                value="<%= bank %>"
+              />
+              <div class="message"></div>
+            </div>
+            <div
+              class="form-group mb-15 optionalInput othersInput"
+              id="routing"
+            >
+              <label for="input7" class="form-label mb-1 tw-text-sm"
+                >Beneficiary's Routing Number</label
+              >
+              <input
+                name="routing"
+                type="number"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input7"
+                placeholder="Routing Number"
+                value="<%= routing %>"
+              />
+              <div class="message"></div>
+            </div>
+            <div
+              class="form-group mb-15 optionalInput othersInput sameInput"
+              id="acNumber"
+            >
+              <label for="input2" class="form-label mb-1 tw-text-sm"
+                >Beneficiary's Account Number</label
+              >
+              <input
+                name="accountNumber"
+                type="number"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input2"
+                placeholder="Account Number"
+                value="<%= accountNumber %>" 
+              />
+              <div class="message"></div>
+            </div>
+            <div class="form-group mb-15" id="name">
+              <label for="input3" class="form-label mb-1 tw-text-sm"
+                >Beneficiary's Name</label
+              >
+              <input
+                name="name"
+                type="text"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm text-capitalize"
+                id="input3"
+                placeholder="Name"
+                value="<%= name %>" <%= accountMode === 'same' ? 'disabled' : '' %>
+              />
+              <div class="message"></div>
+            </div>
+            <div
+              class="form-group mb-15 optionalInput paypalInput"
+              id="paypalEmail"
+            >
+              <label for="input4" class="form-label mb-1 tw-text-sm"
+                >Beneficiary's Paypal Email</label
+              >
+              <input
+                name="paypalEmail"
+                type="email"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input4"
+                placeholder="Paypal Email"
+                value="<%= paypalEmail %>"
+              />
+              <div class="message"></div>
+            </div>
+            <div
+              class="form-group mb-15 optionalInput cashAppInput"
+              id="cashAppUsername"
+            >
+              <label for="input5" class="form-label mb-1 tw-text-sm"
+                >Beneficiary's CashApp Username</label
+              >
+              <input
+                name="cashAppUsername"
+                type="text"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input5"
+                placeholder="CashApp Username"
+                value="<%= cashAppUsername %>"
+              />
+              <div class="message"></div>
+            </div>
+            <div class="form-group mb-15 optionalInput cryptoInput" id="coin">
+              <label for="input6" class="form-label mb-1 tw-text-sm"
+                >Beneficiary's Coin</label
+              >
+              <input
+                name="coin"
+                type="text"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input6"
+                placeholder="Coin"
+                value="<%= coin %>"
+              />
+              <div class="message"></div>
+            </div>
+            <div class="form-group mb-15 optionalInput cryptoInput" id="wallet">
+              <label for="input7" class="form-label mb-1 tw-text-sm"
+                >Beneficiary's Wallet Address</label
+              >
+              <input
+                name="wallet"
+                type="text"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input7"
+                placeholder="Wallet Address"
+                value="<%= wallet %>"
+              />
+              <div class="message"></div>
+            </div>
+            <div class="setting-section pb-15">
+              <div class="user-setting-thumb">
+                <label for="upThumb" class="tw-group">
+                <div class="user-setting-thumb-up position-relative">
+                  <div class="position-absolute d-flex justify-content-center align-items-center tw-top-0 tw-bottom-0 tw-left-0 tw-right-0 tw-bg-red1 tw-bg-opacity-10">
+                  <span class="material-icons tw-text-white group-hover:tw-text-red1">
+                    photo_camera
+                    </span>
+                  </div>
+                  <img
+                    src="<%= dataFile.imageHost %>/beneficiary/profile/<%= profile ? profile : 'default.png' %>"
+                    alt="profile" id="imagePreview"
+                    width="64" height="64"
+                  />
+                </div> 
+                <input type="file" name="beneficiary" id="upThumb" class="d-none" accept="image/*" />
+                </label>
+              </div>
+            <button
+              id="sameBtn"
+              type="button"
+              class="optionalInput btn main-btn main-btn-lg full-width tw-bg-red2 my-3 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200 mb-4 sameInput"
+            >
+              <%= editing ? 'Save' : 'Add Beneficiary' %>
+            </button>
+            <button
+              id="otherBtn"
+              type="button"
+              class="optionalInput btn main-btn main-btn-lg full-width tw-bg-red2 my-3 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200 mb-4 othersInput"
+            >
+              <%= editing ? 'Save' : 'Add Beneficiary' %>
+            </button>
+            <button
+              id="cryptoBtn"
+              type="button"
+              class="optionalInput btn main-btn main-btn-lg full-width tw-bg-red2 my-3 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200 mb-4 cryptoInput"
+            >
+              <%= editing ? 'Save' : 'Add Beneficiary' %>
+            </button>
+            <button
+              id="paypalBtn"
+              type="button"
+              class="optionalInput btn main-btn main-btn-lg full-width tw-bg-red2 my-3 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200 mb-4 paypalInput"
+            >
+              <%= editing ? 'Save' : 'Add Beneficiary' %>
+            </button>
+            <button
+              id="cashAppBtn"
+              type="button"
+              class="optionalInput btn main-btn main-btn-lg full-width tw-bg-red2 my-3 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200 mb-4 cashAppInput"
+            >
+              <%= editing ? 'Save' : 'Add Beneficiary' %>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Body-content -->
+
+    <%- include("includes/footer.ejs") %>
+    <script
+      src="/src/controllers/main/addBeneficiary.js"
+      type="module"
+    ></script>
+  </body>
+</html>

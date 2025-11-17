@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("includes/head.ejs") -%>
+  </head>
+
+  <body>
+    <!-- Start preloader -->
+    <%- include("../share/preloader.ejs") -%>
+    <!-- End preloader -->
+
+    <div class="page-wrapper">
+      <%- include("includes/navigation.ejs") -%>
+
+      <!--Start breadcrumb area-->
+      <section class="breadcrumb-area">
+        <div
+          class="breadcrumb-area-bg"
+          style="
+            background-image: url(/home/images/backgrounds/breadcrumb-area-bg-5.jpg);
+          "
+        ></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="inner-content">
+                <div
+                  class="title"
+                  data-aos="fade-right"
+                  data-aos-easing="linear"
+                  data-aos-duration="500"
+                >
+                  <h2>Our Cards</h2>
+                </div>
+                <div
+                  class="breadcrumb-menu"
+                  data-aos="fade-left"
+                  data-aos-easing="linear"
+                  data-aos-duration="500"
+                >
+                  <ul>
+                    <li><a href="/">Home</a></li>
+                    <li class="active">Our Cards</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--End breadcrumb area-->
+
+      <!--Start Card Banner Area-->
+      <section class="card-banner-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="card-banner-content">
+                <div
+                  class="card-banner-content-bg"
+                  style="
+                    background-image: url(/home/images/shapes/card-banner-area-bg.png);
+                  "
+                ></div>
+                <div class="card-banner-content-img-box">
+                  <img
+                    src="/home/images/resources/card-banner-img-1.png"
+                    alt=""
+                  />
+                </div>
+                <div class="inner-title">
+                  <h4>Corporate Credit Card</h4>
+                  <h2>
+                    Higher Efficiencies &<br />
+                    Savings
+                  </h2>
+                </div>
+                <div class="text">
+                  <p>
+                    Perform various financial transactions <br />
+                    without the need to go to the banking hall.
+                  </p>
+                </div>
+                <div class="btns-box">
+                  <a class="btn-one" href="/login">
+                    <span class="txt">Apply Now</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--End Card Banner Area-->
+
+      <!--Start Cards Area-->
+      <section class="cards-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-3">
+              <div class="sidebar-box-style1">
+                <!--Start Single Sidebar Box Style1-->
+                <div class="single-sidebar-box-style1 margintop">
+                  <div class="sidebar-title">
+                    <div class="dot-box"></div>
+                    <h3>Card Types</h3>
+                  </div>
+                  <div class="card-types-box">
+                    <ul>
+                      <li><a href="#businessCard">Business</a></li>
+                      <li><a href="#cashbackCard">Cashback</a></li>
+                      <li>
+                        <a href="#lowInterestCard">Low Interest</a>
+                      </li>
+                      <li><a href="#rewardCard">Rewards</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <!--End Single Sidebar Box Style1-->
+              </div>
+            </div>
+
+            <div class="col-xl-9">
+              <div class="cards-content-box">
+                <div class="cards-content-box-top">
+                  <div class="left-box">
+                    <h2>Best Cards for Your Needs</h2>
+                  </div>
+                  <div class="right-box"></div>
+                </div>
+
+                <!--Start Single Card Box-->
+                <div class="single-card-box" id="businessCard">
+                  <div class="category-box">Business</div>
+                  <div class="cards-img-box">
+                    <div class="inner-title">
+                      <h3>Platinum Credit Card</h3>
+                    </div>
+                    <div class="inner">
+                      <img src="/home/images/resources/card1.jpg" alt="" />
+                    </div>
+                    <div class="btn-box">
+                      <a class="btn-one style2" href="/login">
+                        <span class="txt">Apply Now</span>
+                      </a>
+                      <a class="btn-one" href="/contact">
+                        <span class="txt">More Info</span>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="cards-text-box">
+                    <p>
+                      The card can be used to pay bills, make purchases and
+                      withdrawals. It is a convenient and safer option than
+                      carrying cash around.
+                    </p>
+                    <h3>Features & Benefits</h3>
+                    <ul>
+                      <li>Zero Joining and Annual Fees</li>
+                      <li>2% Fuel Surcharge waiver at HPCL Petrol Pumps</li>
+                      <li>Multi Rewards & Lifestyle Benefits</li>
+                      <li>5X TAT Miles on Travel</li>
+                    </ul>
+                    <div class="compare-box">
+                      <div class="checked-box1">
+                        <input
+                          type="checkbox"
+                          name="card"
+                          id="card1"
+                          checked=""
+                        />
+                        <label for="card1"><span></span>Add to Compare</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--End Single Card Box-->
+                <!--Start Single Card Box-->
+                <div class="single-card-box" id="cashbackCard">
+                  <div class="category-box">Cashback</div>
+                  <div class="cards-img-box">
+                    <div class="inner-title">
+                      <h3>Millinnia Credit Card</h3>
+                    </div>
+                    <div class="inner">
+                      <img src="/home/images/resources/card2.jpg" alt="" />
+                    </div>
+                    <div class="btn-box">
+                      <a class="btn-one style2" href="/login">
+                        <span class="txt">Apply Now</span>
+                      </a>
+                      <a class="btn-one" href="/contact">
+                        <span class="txt">More Info</span>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="cards-text-box">
+                    <p>
+                      Cash back credit cards from <%= dataFile.name %> allow you
+                      to earn cash rewards on all of your purchases. Apply
+                      online.
+                    </p>
+                    <h3>Features & Benefits</h3>
+                    <ul>
+                      <li>Welcome vouchers worth Rs. 2000+</li>
+                      <li>1% Fuel Surcharge waiver at HPCL Petrol Pumps</li>
+                      <li>Lifestyle Benefits</li>
+                      <li>Access to 1000+ global airport lounges</li>
+                    </ul>
+                    <div class="compare-box">
+                      <div class="checked-box1">
+                        <input type="checkbox" name="card" id="card2" />
+                        <label for="card2"><span></span>Add to Compare</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--End Single Card Box-->
+
+                <!--Start Single Card Box-->
+                <div class="single-card-box" id="lowInterestCard">
+                  <div class="category-box">Low Interest</div>
+                  <div class="cards-img-box">
+                    <div class="inner-title">
+                      <h3>Money Back Credit Card</h3>
+                    </div>
+                    <div class="inner">
+                      <img src="/home/images/resources/card3.jpg" alt="" />
+                    </div>
+                    <div class="btn-box">
+                      <a class="btn-one style2" href="/login">
+                        <span class="txt">Apply Now</span>
+                      </a>
+                      <a class="btn-one" href="/contact">
+                        <span class="txt">More Info</span>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="cards-text-box">
+                    <p>
+                      A lower interest rate credit card can help you save on the
+                      cost of debt by making it easier to pay down your balance
+                      faster.
+                    </p>
+                    <h3>Features & Benefits</h3>
+                    <ul>
+                      <li>Zero Joining and Annual Fees</li>
+                      <li>2% Fuel Surcharge waiver at HPCL Petrol Pumps</li>
+                      <li>Multi Rewards & Lifestyle Benefits</li>
+                      <li>5X TAT Miles on Travel</li>
+                    </ul>
+                    <div class="compare-box">
+                      <div class="checked-box1">
+                        <input type="checkbox" name="card" id="card3" />
+                        <label for="card3"><span></span>Add to Compare</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--End Single Card Box-->
+                <!--Start Single Card Box-->
+                <div class="single-card-box" id="rewardCard">
+                  <div class="category-box">Rewards</div>
+                  <div class="cards-img-box">
+                    <div class="inner-title">
+                      <h3>Easy EMI Credit Card</h3>
+                    </div>
+                    <div class="inner">
+                      <img src="/home/images/resources/card4.jpg" alt="" />
+                    </div>
+                    <div class="btn-box">
+                      <a class="btn-one style2" href="/login">
+                        <span class="txt">Apply Now</span>
+                      </a>
+                      <a class="btn-one" href="/contact">
+                        <span class="txt">More Info</span>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="cards-text-box">
+                    <p>
+                      Enjoy no annual fee while maximizing your cash back by
+                      choosing how you earn rewards
+                    </p>
+                    <h3>Features & Benefits</h3>
+                    <ul>
+                      <li>Welcome vouchers worth $200</li>
+                      <li>1% Fuel Surcharge waiver at HPCL Petrol Pumps</li>
+                      <li>Lifestyle Benefits</li>
+                      <li>Access to 1000+ global airport lounges</li>
+                    </ul>
+                    <div class="compare-box">
+                      <div class="checked-box1">
+                        <input type="checkbox" name="card" id="card4" />
+                        <label for="card4"><span></span>Add to Compare</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--End Single Card Box-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--End Cards Area-->
+
+      <!--Start footer area -->
+      <%- include("includes/footer.ejs") %>
+      <!--End footer area-->
+    </div>
+    <!-- /.page-wrapper -->
+    <%- include("includes/bottom.ejs") -%>
+  </body>
+</html>

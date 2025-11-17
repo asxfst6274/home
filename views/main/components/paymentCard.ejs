@@ -1,0 +1,57 @@
+<!-- prettier-ignore -->
+<%
+
+const id = card._id;
+const type = card.type;
+const name = card.name;
+const number = card.number;
+const month = card.expire.split("/")[0];
+const year = card.expire.split("/")[1];
+
+%>
+
+<div class="col-md-6">
+  <div
+    class="tw-rounded-lg tw-bg-white p-4 shadow position-relative"
+    style="
+      background-image: url(/share/images/card-bg.jpg);
+      background-size: contain;
+      background-position: right;
+    "
+  >
+    <div class="d-flex justify-content-between">
+      <h1 class="tw-text-2xl text-capitalize"><%= type %></h1>
+      <span class="material-icons"> waves </span>
+    </div>
+    <div class="d-flex my-4 justify-content-between align-items-center">
+      <img src="/share/images/card-chip.png" class="tw-h-[3rem]" alt="" />
+      <h1 class="tw-text-xl"><%= helpers.groupString(number) %></h1>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div>
+        <p class="tw-text-[12px]">VALID THRU</p>
+        <h2><%= month.padStart(2, '0') %> / <%= year %></h2>
+        <h2 class="text-uppercase"><%= name %></h2>
+      </div>
+      <div class="d-flex align-items-end">
+        <img
+          src="/share/images/<%= type %>.png"
+          class="tw-max-h-[3rem] tw-max-w-[5.5rem]"
+          alt=""
+        />
+      </div>
+    </div>
+    <ul class="payment-uploaded-action">
+      <li class="tw-text-white tw-bg-red1 tw-shadow-md tw-shadow-red-200">
+        <a href="/edit-card/<%= id %>">
+          <i class="icofont-ui-edit"></i>
+        </a>
+      </li>
+      <li class="tw-text-white tw-bg-red1 tw-shadow-md tw-shadow-red-200">
+        <a data-id="<%= id %>" class="delete-card" href="javascript:void(0)">
+          <i class="flaticon-trash"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

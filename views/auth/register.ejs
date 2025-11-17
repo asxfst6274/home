@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <%- include("includes/head.ejs") %>
+  </head>
+
+  <body class="tw-bg-milk">
+    <!-- Start Preloader Area -->
+    <%- include("../share/preloader.ejs") %>
+    <!-- End Preloader Area -->
+
+    <!-- Start Sign In Area -->
+    <section class="sign-in-area pb-4">
+      <%- include("includes/header.ejs") %>
+      <div class="container">
+        <%- include("../share/notice.ejs") %>
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+            <div class="register-form">
+              <div class="d-flex gap-2">
+                <h2 class="fw-bold ps-0 tw-opacity-50">1</h2>
+                <h2 class="tw-border-l-4 tw-border-red1">
+                  <span class="d-none d-md-inline">Create an account</span>
+                  <span class="d-md-none">Register</span>
+                </h2>
+              </div>
+              <form method="post" action="/register-start">
+                <input type="hidden" name="_csrf" id="csrf" value="<%= csrfToken %>">
+                <input type="hidden" name="dob" value="<%= dob %>">
+                <input type="hidden" name="gender" value="<%= gender %>">
+                <input type="hidden" name="maritalStatus" value="<%= maritalStatus %>">
+                <input type="hidden" name="income" value="<%= income %>">
+                <input type="hidden" name="occupation" value="<%= occupation %>">
+                <input type="hidden" name="street" value="<%= street %>">
+                <input type="hidden" name="state" value="<%= state %>">
+                <input type="hidden" name="city" value="<%= city %>">
+                <input type="hidden" name="zipCode" value="<%= zipCode %>">
+                <input type="hidden" name="country" value="<%= country %>">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group" id="accountType">
+                      <label>Account type</label>
+                      <select class="text-dark tw-border-gray-300 tw-border-2" name="accountType">
+                        <option value="savings" 
+                        <%= accountType === 'savings' ? 'selected' : '' %>
+                        >Savings account</option>
+                        <option value="current"
+                        <%= accountType === 'current' ? 'selected' : '' %>
+                        >Current account</option>
+                        <option value="fixed deposit"
+                        <%= accountType === 'fixed deposit' ? 'selected' : '' %>
+                        >Fixed deposit account</option>
+                        <option value="salary"
+                        <%= accountType === 'salary' ? 'selected' : '' %>
+                        >Salary account</option>
+                        <option value="recuring deposit"
+                        <%= accountType === 'recuring deposit' ? 'selected' : '' %>
+                        >Recuring deposit account</option>
+                      </select>
+                      <div class="message"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <div class="form-group" id="name">
+                      <label>Full name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        class="form-control tw-border-gray-300 tw-border-2"
+                        placeholder="Full name"
+                        value="<%= name %>"
+                      />
+                      <div class="message"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <div id="phone" class="mb-3">
+
+                    <div class="d-flex gap-2">
+                      <div class="form-group mb-0" id="code">
+                        <label>Code</label>
+                        <select
+                          class="text-dark tw-border-gray-300 tw-border-2 tw-max-w-[100px] minimize mb-0"
+                          name="phoneCountryCode"
+                        >
+                          <% phoneCodes.forEach(country => { %>
+                          <option value="<%= country.code %>,,,<%= country.iso %>" 
+                            <%= country.iso === iso ? 'selected' : country.iso === 'US' ? 'selected' : '' %>
+                            >
+                            <%= country.iso %> +<%= country.code %>
+                          </option>
+                          <% }) %>
+                        </select>
+                      </div>
+                      <div class="form-group mb-0 tw-flex-1">
+                        <label>Mobile number</label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          class="form-control mb-0 tw-border-gray-300 tw-border-2"
+                          placeholder="Mobile number"
+                          value="<%= phone %>"
+                        />
+                      </div>
+                    </div>
+                    <div class="message"></div>
+                  </div>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <div class="form-group" id="email">
+                      <label>Email address</label>
+                      <input
+                        type="email"
+                        name="email"
+                        class="form-control tw-border-gray-300 tw-border-2"
+                        placeholder="Email address"
+                        value="<%= email %>"
+                      />
+                      <div class="message"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <div class="form-group" id="pass">
+                      <label>Password</label>
+                      <input
+                        type="password"
+                        name="pass"
+                        class="form-control tw-border-gray-300 tw-border-2"
+                        placeholder="Password"
+                        value="<%= pass %>"
+                      />
+                      <div class="message"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <div class="form-group" id="cpass">
+                      <label>Confirm password</label>
+                      <input
+                        type="password"
+                        name="cpass"
+                        class="form-control tw-border-gray-300 tw-border-2"
+                        placeholder="Confirm password"
+                        value="<%= cpass %>"
+                      />
+                      <div class="message"></div>
+                    </div>
+                  </div>
+
+                  <div id="terms">
+                    <div class="check-group pb-2">
+                      <div class="checkbox">
+                        <label
+                          ><input type="checkbox" name="terms" value="1" <%= terms ? 'checked' : '' %>/> 
+                          I Accept the <a href="/terms">Terms &
+                          Conditions</a></label
+                        >
+                      </div>
+                    </div>
+                    <div class="message"></div>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <div class="banner-form-btn">
+                      <button type="button" class="default-btn tw-bg-red2" id="submitBtn">
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <a class="text-center pt-4" href="/login"
+                    >Already have an account?</a
+                  >
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Sign In Area -->
+
+    <%- include("includes/footer.ejs") %>
+    <script src="/src/controllers/auth/register.js" type="module"></script>
+  </body>
+</html>

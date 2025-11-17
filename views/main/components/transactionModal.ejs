@@ -1,0 +1,92 @@
+<div
+  class="modal fade"
+  id="transactionDetails"
+  tabindex="-1"
+  aria-labelledby="centerModal"
+  aria-hidden="true"
+>
+  <div data-bs-toggle="modal" data-bs-target="#transactionDetails"></div>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable round">
+    <div class="modal-content mobile-screen px-0 py-3">
+      <div class="container">
+        <div class="modal-header">
+          <div class="modal-header-title">
+            <h5 class="modal-title">Transaction Details</h5>
+          </div>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <span class="material-icons">close</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="payment-list pb-15">
+            <div class="payment-list-details">
+              <div class="payment-list-item payment-list-title">
+                Payment Status
+              </div>
+              <div
+                class="payment-list-item payment-list-info text-capitalize"
+                id="transStatus"
+              >
+                Success
+              </div>
+            </div>
+            <div class="payment-list-details">
+              <div class="payment-list-item payment-list-title">Date</div>
+              <div class="payment-list-item payment-list-info" id="transDate">
+                15 Jan, 2021
+              </div>
+            </div>
+            <div class="payment-list-details">
+              <div class="payment-list-item payment-list-title" id="cUser">
+                From
+              </div>
+              <div class="payment-list-item payment-list-info">
+                <%= cUser.accountNumber %>
+              </div>
+            </div>
+            <div class="payment-list-details">
+              <div class="payment-list-item payment-list-title" id="sUser">
+                To
+              </div>
+              <div
+                class="payment-list-item payment-list-info text-capitalize"
+                id="transName"
+              >
+                Brenda Davis
+              </div>
+            </div>
+            <div class="payment-list-details">
+              <div class="payment-list-item payment-list-title">
+                Transaction Type
+              </div>
+              <div
+                class="payment-list-item payment-list-info text-capitalize"
+                id="transType"
+              >
+                Transfer
+              </div>
+            </div>
+            <div class="payment-list-details">
+              <div class="payment-list-item payment-list-title">Amount</div>
+              <div class="payment-list-item payment-list-info" id="transAmount">
+                $ 185.00
+              </div>
+            </div>
+            <button
+              data-bs-dismiss="modal"
+              type="button"
+              class="btn main-btn main-btn-lg full-width tw-bg-red2 mt-4 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

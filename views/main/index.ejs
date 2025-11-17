@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <%- include("includes/head.ejs") %>
+
+  <body>
+    <%- include("includes/navigation.ejs") %>
+
+    <!-- Body-content -->
+    <div class="body-content body-content-lg">
+        <!-- "body-content-lg" add this class if any cards inside this div has "section-to-header" class -->
+        <div class="mobile-screen">
+           
+            <!-- Add-card -->
+            <div class="add-card section-to-header mb-15 tw-border-2 tw-border-redLight p-0 tw-overflow-hidden">
+                <div class="add-card-inner tw-px-[15px] tw-py-[30px]">
+                    <div class="add-card-item add-card-info tw-border-r-2 tw-border-gray-300 tw-flex-1 pe-3">
+                        <p class="mb-0 tw-text-sm">Main Balance</p>
+                        <h3 class="myMainBalance"><%= cUser.hideBalance ? "$ *** *** **" : helpers.dollar(cUser.balance) %></h3>
+                        <input type="hidden" id="mainBalance" value="<%= helpers.dollar(cUser.balance) %>">
+                        
+                    </div>
+                    <div class="tw-flex-1 d-flex flex-column align-items-end">
+                        <div class="form-check form-switch mb-0">
+                            <input class="form-check-input rounded-pill tw-cursor-pointer" type="checkbox" role="switch" id="hide-balance" <%= cUser.hideBalance ? "checked" : '' %>>
+                        </div>
+                        <label for="hide-balance" class="tw-cursor-pointer">
+                        <p class="tw-text-sm">Hide balance</p>
+                    </label>
+                    </div>
+                </div>
+                <div class="option-card tw-bg-slate-400 px-3 py-2 ">
+                    <p class="mb-0 md:tw-text-center tw-text-white ">Ledger Bal: <span class="myMainBalance"><%= cUser.hideBalance ? "$ *** *** **" : helpers.dollar(cUser.balance) %></span></p>
+                </div>
+            </div>
+            <!-- Add-card -->
+            <div class="tw-border-b tw-border-slate-300 mb-3"></div>
+            <!-- Option-section -->
+            <div class="send-money-section">
+                <div class="row gx-3">
+                    
+                    <style>
+                        .transfer-card-thumb {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                        .transfer-card-thumb img {
+                            border: 4px solid #94a3b8;
+                            border-radius: 50rem;
+                            width: 80px;
+                            object-fit: cover;
+                            object-position: center;
+                        }
+                        .transfer-card p {
+                            font-size: 14px;
+                        }
+                    </style>
+             
+
+                    <div class="col-3">
+                        <form action="/transfer" method="get">
+                        <input type="hidden" name="method" value="others">
+                        <button type="submit" class="w-100 p-0 m-0">
+                        <div class="transfer-card tw-cursor-pointer">
+                            <div class="transfer-card-thumb">
+                            <img src="/share/images/transfer/bank-2-img.png" alt="user">
+                            </div>
+                            <p class="text-capitalize text-nowrap overflow-hidden">Bank</p>
+                        </div>
+                        </button>
+                        </form>
+                    </div>
+
+
+                    <div class="col-3">
+                        <form action="/transfer" method="get">
+                        <input type="hidden" name="method" value="crypto">
+                        <button type="submit" class="w-100 p-0 m-0">
+                        <div class="transfer-card tw-cursor-pointer">
+                            <div class="transfer-card-thumb">
+                            <img src="/share/images/transfer/crypto-img.jpg" alt="user">
+                            </div>
+                            <p class="text-capitalize text-nowrap overflow-hidden">Crypto</p>
+                        </div>
+                        </button>
+                        </form>
+                    </div>
+
+             
+
+
+                    <div class="col-3">
+                        <form action="/transfer" method="get">
+                            <input type="hidden" name="method" value="paypal">
+                        <button type="submit" class="w-100 p-0 m-0">
+                        <div class="transfer-card tw-cursor-pointer">
+                            <div class="transfer-card-thumb">
+                            <img src="/share/images/transfer/paypal-img.jpg" alt="user">
+                            </div>
+                            <p class="text-capitalize text-nowrap overflow-hidden">PayPal</p>
+                        </div>
+                        </button>
+                        </form>
+                    </div>
+
+
+
+                    <div class="col-3">
+                        <form action="/transfer" method="get">
+                        <input type="hidden" name="method" value="cashApp">
+                        <button type="submit" class="w-100 p-0 m-0">
+                        <div class="transfer-card tw-cursor-pointer">
+                            <div class="transfer-card-thumb">
+                            <img src="/share/images/transfer/cashapp-img.png" alt="user">
+                            </div>
+                            <p class="text-capitalize text-nowrap overflow-hidden">CashApp</p>
+                        </div>
+                        </button>
+                        </form>
+                    </div>
+
+       
+                
+            </div>
+            </div>
+            <!-- Option-section -->
+            <!-- Add-card -->
+            <div class="tw-border-b tw-border-slate-300 mb-3"></div>
+            <!-- Option-section -->
+            <div class="option-section">
+                <div class="row gx-3">
+                    <div class="col pb-15">
+                        <div class="option-card option-card-violet border">
+                            <a href="/savings">
+                                <div class="option-card-icon">
+                                    <i class="flaticon-savings"></i>
+                                </div>
+                                <p>My Savings</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col pb-15">
+                        <div class="option-card option-card-red border">
+                            <a href="/transfer">
+                                <div class="option-card-icon">
+                                    <i class="flaticon-right-arrow"></i>
+                                </div>
+                                <p>Transfer</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col pb-15">
+                        <div class="option-card option-card-blue border">
+                            <a href="/deposit">
+                                <div class="option-card-icon">
+                                    <i class="flaticon-plus"></i>
+                                </div>
+                                <p>Deposit</p>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Option-section -->
+
+            <div class="tw-border-b tw-border-slate-300 mb-3"></div>
+            <!-- Feature-section -->
+            <div class="feature-section mb-15">
+                <div class="row gx-3">
+                    <div class="col col-sm-6 pb-15">
+                        <div class="feature-card feature-card-red">
+                            <div class="feature-card-thumb">
+                                <i class="flaticon-income"></i>
+                            </div>
+                            <div class="feature-card-details">
+                                <p>Income</p>
+                                <h3><%= helpers.dollar(incomeCount) %></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-sm-6 pb-15">
+                        <div class="feature-card feature-card-blue">
+                            <div class="feature-card-thumb">
+                                <i class="flaticon-expenses"></i>
+                            </div>
+                            <div class="feature-card-details">
+                                <p>Expenses</p>
+                                <h3><%= helpers.dollar(expenseCount) %></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-sm-6 pb-15">
+                        <div class="feature-card feature-card-violet">
+                            <div class="feature-card-thumb">
+                                <i class="flaticon-invoice"></i>
+                            </div>
+                            <div class="feature-card-details">
+                                <p>Total Bills</p>
+                                <h3>$0.00</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-sm-6 pb-15">
+                        <div class="feature-card feature-card-green">
+                            <div class="feature-card-thumb">
+                                <i class="flaticon-savings"></i>
+                            </div>
+                            <div class="feature-card-details">
+                                <p>Savings</p>
+                                <h3><%= helpers.dollar(savingsCount) %></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Feature-section -->
+
+            <% if(transactions.length){ %>
+            <!-- Transaction-section -->
+            <div class="transaction-section pb-15">
+                <div class="section-header">
+                    <h2>Transactions</h2>
+                    <div class="view-all">
+                        <a href="/transactions">View All</a>
+                    </div>
+                </div>
+                <% transactions.forEach(transaction =>{ %>
+                    <!--  -->
+                    <%- include("components/transactionCard.ejs",{transaction}) %>
+                    <!--  -->
+                <% }) %>
+            </div>
+            <!-- Transaction-section -->
+            <% } %>
+
+            <% if(beneficiaries.length){ %>
+            <div class="send-money-section pb-15">
+                <div class="section-header">
+                    <h2>Beneficiaries</h2>
+                    <div class="view-all">
+                        <a href="/beneficiaries">View All</a>
+                    </div>
+                </div>
+                <div class="row gx-3">
+                    <% beneficiaries.forEach(beneficiary =>{ %>
+                        <!--  -->
+                        <%- include("components/beneficiarySmallCard.ejs",{beneficiary}) %>
+                        <!--  -->
+                    <% }) %>
+                </div>
+            </div>
+            <% } %>
+
+            <% if(savings.length){ %>
+            <!-- Saving-goals-section -->
+            <div class="saving-goals-section pb-15">
+                <div class="section-header">
+                    <h2>Saving Goals</h2>
+                    <div class="view-all">
+                        <a href="/savings">View All</a>
+                    </div>
+                </div>
+                <%- include("components/savingsGoal.ejs") %>
+            </div>
+            <!-- Saving-goals-section -->
+            <% } %>
+            <!-- Latest-news-section -->
+            <div class="latest-news-section pb-15">
+                <div class="section-header">
+                    <h2>Good To Know</h2>
+                    <div class="view-all">
+                        <!-- <a href="blogs.html">View All</a> -->
+                    </div>
+                </div>
+
+                <div class="stage-padding-carousel owl-carousel owl-theme">
+                    <div class="item">
+                        <div class="blog-card">
+                            <div class="blog-card-thumb">
+                                <a href="javascript:;">
+                                    <img src="/share/images/blog/blog1.jpg" alt="blog">
+                                </a>
+                            </div>
+                            <div class="blog-card-details">
+                                <ul class="blog-entry">
+                                    <li>Jim Hamer</li>
+                                    <li>15 Aug, 2024</li>
+                                </ul>
+                                <h3><a href="javascript:;"><%= dataFile.name %>’s Gross Earnings hit $1.4bn, Reports 12.3% Growth in Profit</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="blog-card">
+                            <div class="blog-card-thumb">
+                                <a href="javascript:;">
+                                    <img src="/share/images/blog/blog2.jpg" alt="blog">
+                                </a>
+                            </div>
+                            <div class="blog-card-details">
+                                <ul class="blog-entry">
+                                    <li>Leticia Mond </li>
+                                    <li>11 July, 2024</li>
+                                </ul>
+                                <h3><a href="javascript:;"><%= dataFile.name %> is here to help you elevate your business, and status.</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="blog-card">
+                            <div class="blog-card-thumb">
+                                <a href="javascript:;">
+                                    <img src="/share/images/blog/blog3.jpg" alt="blog">
+                                </a>
+                            </div>
+                            <div class="blog-card-details">
+                                <ul class="blog-entry">
+                                    <li>Jack Griggs</li>
+                                    <li>15 Jan, 2025</li>
+                                </ul>
+                                <h3><a href="javascript:;">
+                                    Helping You Build The Resources For The Important Things In Life</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Latest-news-section -->
+    </div>
+    </div>
+    <!-- Body-content -->
+
+    <!-- savings-details-modal -->
+    <%- include("components/savingsModal.ejs") %>
+    <%- include("components/savingsCloseModal.ejs") %>
+    <%- include("components/transactionModal.ejs") %>
+    <!-- Savings-modal -->
+  
+    <%- include("includes/footer.ejs") %>
+    <script src="/src/controllers/main/savings.js" type="module"></script>
+    <script src="/src/controllers/main/transaction.js" type="module"></script>
+    <script src="/src/controllers/main/index.js" type="module"></script>
+</body>
+</html>
+  

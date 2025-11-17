@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <%- include("includes/head.ejs") %>
+
+  <body>
+    <%- include("includes/navigation.ejs") %>
+
+    <!-- Body-content -->
+    <div class="body-content">
+      <div class="mobile-screen">
+        <%- include("../share/notice.ejs") %>
+        <div
+          class="section-header d-block tw-border-b-4 tw-border-red1 mb-3 pb-2"
+        >
+          <h2 class="text-center">Wire Transfer</h2>
+        </div>
+        <% if(cUser.status === 'active'){ %>
+          <input type="hidden" name="" id="isVerifield" value="1">
+        <% } %>
+        <% if(settings.cot){ %>
+        <input type="hidden" name="" id="requireCot" value="1">
+        <% } %>
+        <form action="/transfer" method="post">
+          <input
+            type="hidden"
+            name="_csrf"
+            id="csrf"
+            value="<%= csrfToken %>"
+          />
+          <input type="hidden" name="cotCode" id="myCotCode">
+          <input type="hidden" name="" id="myAccountNumber" value="<%= cUser.accountNumber %>">
+          <input type="hidden" name="" id="myBalance" value="<%= cUser.balance %>">
+          <div class="bg-white p-3 rounded shadow mb-4">
+            <div class="form-group mb-15" id="account">
+              <label class="form-label mb-1 tw-text-sm">Account Mode</label>
+              <select
+                id="accountMode"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                name="accountMode"
+              >
+                <option value="same"
+                <%= transfer.accountMode === 'same' ? 'selected' : '' %> 
+                > 
+                <%= dataFile.name %></option>
+                <option value="others"
+                <%= transfer.accountMode === 'others' ? 'selected' : '' %>
+                >Other Banks</option>
+                <option value="crypto"
+                <%= transfer.accountMode === 'crypto' ? 'selected' : '' %>
+                >Cryptocurrency</option>
+                <option value="paypal"
+                <%= transfer.accountMode === 'paypal' ? 'selected' : '' %>
+                >Paypal</option>
+                <option value="cashApp"
+                <%= transfer.accountMode === 'cashApp' ? 'selected' : '' %>
+                >Cash App</option>
+              </select>
+            </div>
+            <div class="form-group mb-15">
+              <label class="form-label mb-1 tw-text-sm">From</label>
+              <select
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+              >
+                <option value="1">
+                  <%= cUser.accountType %> (<%= cUser.accountNumber %>)
+                </option>
+              </select>
+            </div>
+            <div class="form-group mb-15 optionalInput othersInput" id="bank"> 
+              <label for="input1" class="form-label mb-1 tw-text-sm"
+                >Receiver's Bank Name</label
+              >
+              <input
+                name="bank"
+                type="text"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input1"
+                placeholder="Bank Name"
+                value="<%= transfer.bank %>"
+              />
+              <div class="message"></div>
+            </div>
+            <div
+              class="form-group mb-15 optionalInput othersInput"
+              id="routing"
+            >
+              <label for="input7" class="form-label mb-1 tw-text-sm"
+                >Routing Number / Swift Code</label
+              >
+              <input
+                name="routing"
+                type="text"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input7"
+                placeholder="Routing Number / Swift Code"
+                value="<%= transfer.routing %>"
+              />
+              <div class="message"></div>
+            </div>
+            <div
+              class="form-group mb-15 optionalInput othersInput sameInput"
+              id="acNumber"
+            >
+              <label for="input2" class="form-label mb-1 tw-text-sm"
+                >Receiver's Account Number</label
+              >
+              <input
+                name="accountNumber"
+                type="number"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input2"
+                placeholder="Account Number"
+                value="<%= transfer.accountNumber %>" 
+              />
+              <div class="message"></div>
+            </div>
+            <div class="form-group mb-15" id="name">
+              <label for="input3" class="form-label mb-1 tw-text-sm"
+                >Receiver's Name</label
+              >
+              <input
+                name="name"
+                type="text"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm text-capitalize"
+                id="input3"
+                placeholder="Name"
+                value="<%= transfer.name %>" <%= transfer.accountMode === 'same' ? 'disabled' : '' %>
+              />
+              <div class="message"></div>
+            </div>
+            <div
+              class="form-group mb-15 optionalInput paypalInput"
+              id="paypalEmail"
+            >
+              <label for="input4" class="form-label mb-1 tw-text-sm"
+                >Receiver's Paypal Email</label
+              >
+              <input
+                name="paypalEmail"
+                type="email"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input4"
+                placeholder="Paypal Email"
+                value="<%= transfer.paypalEmail %>"
+              />
+              <div class="message"></div>
+            </div>
+            <div
+              class="form-group mb-15 optionalInput cashAppInput"
+              id="cashAppUsername"
+            >
+              <label for="input5" class="form-label mb-1 tw-text-sm"
+                >Receiver's CashApp Username</label
+              >
+              <input
+                name="cashAppUsername"
+                type="text"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input5"
+                placeholder="CashApp Username"
+                value="<%= transfer.cashAppUsername %>"
+              />
+              <div class="message"></div>
+            </div>
+            <div class="form-group mb-15 optionalInput cryptoInput" id="coin">
+              <label for="input6" class="form-label mb-1 tw-text-sm"
+                >Receiver's Coin</label
+              >
+              <input
+                name="coin"
+                type="text"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input6"
+                placeholder="Coin"
+                value="<%= transfer.coin %>"
+              />
+              <div class="message"></div>
+            </div>
+            <div class="form-group mb-15 optionalInput cryptoInput" id="wallet">
+              <label for="input7" class="form-label mb-1 tw-text-sm"
+                >Receiver's Wallet Address</label
+              >
+              <input
+                name="wallet"
+                type="text"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input7"
+                placeholder="Wallet Address"
+                value="<%= transfer.wallet %>"
+              />
+              <div class="message"></div>
+            </div>
+            <div class="form-group mb-15" id="amount">
+              <label for="input8" class="form-label mb-1 tw-text-sm"
+                >Amount</label
+              >
+              <input
+                name="amount"
+                type="text"
+                class="form-control tw-bg-milk tw-bg-opacity-75 rounded tw-shadow-sm"
+                id="input8"
+                placeholder="Amount"
+                value="<%= transfer.amount %>"
+              />
+              <div class="message"></div>
+            </div>
+            <button
+              id="sameBtn"
+              type="button"
+              class="optionalInput btn main-btn main-btn-lg full-width tw-bg-red2 my-3 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200 mb-4 sameInput"
+            >
+              Send
+            </button>
+            <button
+              id="otherBtn"
+              type="button"
+              class="optionalInput btn main-btn main-btn-lg full-width tw-bg-red2 my-3 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200 mb-4 othersInput"
+            >
+              Send
+            </button>
+            <button
+              id="cryptoBtn"
+              type="button"
+              class="optionalInput btn main-btn main-btn-lg full-width tw-bg-red2 my-3 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200 mb-4 cryptoInput"
+            >
+              Send
+            </button>
+            <button
+              id="paypalBtn"
+              type="button"
+              class="optionalInput btn main-btn main-btn-lg full-width tw-bg-red2 my-3 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200 mb-4 paypalInput"
+            >
+              Send
+            </button>
+            <button
+              id="cashAppBtn"
+              type="button"
+              class="optionalInput btn main-btn main-btn-lg full-width tw-bg-red2 my-3 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200 mb-4 cashAppInput"
+            >
+              Send
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Body-content -->
+
+    <!--  -->
+    <!-- VERIFICATION MODAL -->
+    <div class="modal fade" id="noticeModal" tabindex="-1" aria-labelledby="noticeModal" aria-hidden="true">
+      <div data-bs-toggle="modal" data-bs-target="#noticeModal"></div>
+      <div class="modal-dialog modal-dialog-centered modal-dialog-animatezoom round">
+          <div class="modal-content mobile-screen px-0 py-3">
+              <div class="container">
+                  <div class="modal-header">
+                      <div class="modal-header-title">
+                          <h3 class="modal-title" id="noticeModalTitle">Pending Verification!</h3>
+                      </div>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                         <h1 class="text-center" id="noticeModalContent"> Your account has not yet been verified, you will be able to perform this action once you are fully verified. Thank you for choosing <%= dataFile.name %>. </h1>
+                          <button type="button"
+                              class="btn main-btn main-btn-lg full-width tw-bg-red1 my-3  tw-text-sm rounded tw-shadow-lg tw-shadow-red-200"  data-bs-dismiss="modal" >Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!--  -->
+    <!-- COT MODAL -->
+    <div class="modal fade" id="cotCodeModal" tabindex="-1" aria-labelledby="cotCodeModal" aria-hidden="true">
+      <div data-bs-toggle="modal" data-bs-target="#cotCodeModal"></div>
+      <div class="modal-dialog modal-dialog-centered modal-dialog-animatezoom round">
+          <div class="modal-content mobile-screen px-0 py-3">
+              <div class="container">
+                  <div class="modal-header">
+                      <div class="modal-header-title">
+                          <h3 class="modal-title">Token Required!</h3>
+                      </div>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                          <div class="form-group mb-15" id="cotCode">
+                              <input name="cotCode" type="number" class="form-control" placeholder="Token">
+                              <div class="message"></div>
+                          </div>
+                          <button id="cotCodeBtn" type="button"
+                              class="btn main-btn main-btn-lg full-width tw-bg-red1 my-3  tw-text-sm rounded tw-shadow-lg tw-shadow-red-200">Confirm</button>
+                              <div class="d-flex justify-content-center">
+                                <!-- <span class="text-center w-100">Don't have a code?</span> -->
+                              </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+    <%- include("includes/footer.ejs") %>
+    <script
+    src="/src/controllers/main/transfer.js"
+    type="module"
+  ></script>
+
+  </body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <%- include("includes/head.ejs") %>
+
+  <body>
+    <%- include("includes/navigation.ejs") %>
+    <!--  -->
+
+    <!-- Body-content -->
+    <div class="body-content">
+      <div class="mobile-screen">
+        <%- include("../share/notice.ejs") %>
+        <div
+          class="section-header d-block tw-border-b-4 tw-border-red1 mb-3 pb-2"
+        >
+          <h2 class="text-center">New Savings</h2>
+        </div>
+        <form action="/savings" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <h2 class="mb-3">
+            <span class="tw-border-b-2 tw-border-gray-300 pb-1 px-2">
+              Category</span
+            >
+          </h2>
+          <div class="row g-2">
+            <div class="col-4">
+              <input type="radio" class="tw-peer d-none" name="category"
+              id="savings1" value="business" <%= !category ? 'checked' :
+              category === 'business' ? 'checked' : '' %> />
+              <label
+                for="savings1"
+                class="p-3 tw-border-2 tw-cursor-pointer tw-border-red-500 tw-bg-red-100 tw-text-red-700 tw-rounded-md tw-shadow-md tw-shadow-red-100 d-flex flex-column align-items-center peer-checked:tw-text-white peer-checked:tw-bg-red-500"
+              >
+                <span class="material-icons">business</span>
+                <span class="">Business</span>
+              </label>
+            </div>
+            <div class="col-4">
+              <input type="radio" class="tw-peer d-none" name="category"
+              id="savings2" value="gaming" <%= category === 'gaming' ? 'checked'
+              : '' %> />
+              <label
+                for="savings2"
+                class="p-3 tw-border-2 tw-cursor-pointer tw-border-blue-500 tw-bg-blue-100 tw-text-blue-700 tw-rounded-md tw-shadow-md tw-shadow-blue-100 d-flex flex-column align-items-center peer-checked:tw-text-white peer-checked:tw-bg-blue-500"
+              >
+                <span class="material-icons">sports_esports</span>
+                <span class="">Gaming</span>
+              </label>
+            </div>
+            <div class="col-4">
+              <input type="radio" class="tw-peer d-none" name="category"
+              id="savings3" value="rent" <%= category === 'rent' ? 'checked' :
+              '' %> />
+              <label
+                for="savings3"
+                class="p-3 tw-border-2 tw-cursor-pointer tw-border-orange-500 tw-bg-orange-100 tw-text-orange-700 tw-rounded-md tw-shadow-md tw-shadow-orange-100 d-flex flex-column align-items-center peer-checked:tw-text-white peer-checked:tw-bg-orange-500"
+              >
+                <span class="material-icons">house</span>
+                <span class="">Rent</span>
+              </label>
+            </div>
+            <div class="col-4">
+              <input type="radio" class="tw-peer d-none" name="category"
+              id="savings4" value="bills" <%= category === 'bills' ? 'checked' :
+              '' %> />
+              <label
+                for="savings4"
+                class="p-3 tw-border-2 tw-cursor-pointer tw-border-slate-500 tw-bg-slate-100 tw-text-slate-700 tw-rounded-md tw-shadow-md tw-shadow-slate-100 d-flex flex-column align-items-center peer-checked:tw-text-white peer-checked:tw-bg-slate-500"
+              >
+                <span class="material-icons">sell</span>
+                <span class="">Bills</span>
+              </label>
+            </div>
+            <div class="col-4">
+              <input type="radio" class="tw-peer d-none" name="category"
+              id="savings5" value="shopping" <%= category === 'shopping' ?
+              'checked' : '' %> />
+              <label
+                for="savings5"
+                class="p-3 tw-border-2 tw-cursor-pointer tw-border-green-500 tw-bg-green-100 tw-text-green-700 tw-rounded-md tw-shadow-md tw-shadow-green-100 d-flex flex-column align-items-center peer-checked:tw-text-white peer-checked:tw-bg-green-500"
+              >
+                <span class="material-icons">shopping_cart</span>
+                <span class="">Shopping</span>
+              </label>
+            </div>
+            <div class="col-4">
+              <input type="radio" class="tw-peer d-none" name="category"
+              id="savings6" value="sports" <%= category === 'sports' ? 'checked'
+              : '' %> />
+              <label
+                for="savings6"
+                class="p-3 tw-border-2 tw-cursor-pointer tw-border-violet-500 tw-bg-violet-100 tw-text-violet-700 tw-rounded-md tw-shadow-md tw-shadow-violet-100 d-flex flex-column align-items-center peer-checked:tw-text-white peer-checked:tw-bg-violet-500"
+              >
+                <span class="material-icons">sports_football</span>
+                <span class="">Sports</span>
+              </label>
+            </div>
+            <div class="col-4">
+              <input type="radio" class="tw-peer d-none" name="category"
+              id="savings7" value="movies" <%= category === 'movies' ? 'checked'
+              : '' %> />
+              <label
+                for="savings7"
+                class="p-3 tw-border-2 tw-cursor-pointer tw-border-pink-500 tw-bg-pink-100 tw-text-pink-700 tw-rounded-md tw-shadow-md tw-shadow-pink-100 d-flex flex-column align-items-center peer-checked:tw-text-white peer-checked:tw-bg-pink-500"
+              >
+                <span class="material-icons">theaters</span>
+                <span class="">Movies</span>
+              </label>
+            </div>
+            <div class="col-4">
+              <input type="radio" class="tw-peer d-none" name="category"
+              id="savings8" value="vacation" <%= category === 'vacation' ?
+              'checked' : '' %> />
+              <label
+                for="savings8"
+                class="p-3 tw-border-2 tw-cursor-pointer tw-border-yellow-500 tw-bg-yellow-100 tw-text-yellow-700 tw-rounded-md tw-shadow-md tw-shadow-yellow-100 d-flex flex-column align-items-center peer-checked:tw-text-white peer-checked:tw-bg-yellow-500"
+              >
+                <span class="material-icons">local_airport</span>
+                <span class="">Vacation</span>
+              </label>
+            </div>
+            <div class="col-4">
+              <input type="radio" class="tw-peer d-none" name="category"
+              id="savings9" value="others" <%= category === 'others' ? 'checked'
+              : '' %> />
+              <label
+                for="savings9"
+                class="p-3 tw-border-2 tw-cursor-pointer tw-border-stone-500 tw-bg-stone-100 tw-text-stone-700 tw-rounded-md tw-shadow-md tw-shadow-stone-100 d-flex flex-column align-items-center peer-checked:tw-text-white peer-checked:tw-bg-stone-500"
+              >
+                <span class="material-icons">extension</span>
+                <span class="">Others</span>
+              </label>
+            </div>
+          </div>
+          <h2 class="mb-3 mt-4">
+            <span class="tw-border-b-2 tw-border-gray-300 pb-1 px-2"
+              >Saving For?</span
+            >
+          </h2>
+          <div class="form-group" id="title">
+            <input
+              type="text"
+              class="form-control tw-border-gray-400 tw-shadow-sm rounded"
+              id="input8"
+              placeholder="Reason for saving"
+              name="title"
+              value="<%= inputTitle %>"
+            />
+            <div class="message"></div>
+          </div>
+          <h2 class="mb-3 mt-4">
+            <span class="tw-border-b-2 tw-border-gray-300 pb-1 px-2"
+              >Target amount
+            </span>
+          </h2>
+          <div class="form-group mb-15" id="target">
+            <input
+              type="number"
+              class="form-control tw-border-gray-400 tw-shadow-sm rounded"
+              id="input8"
+              placeholder="Target amount"
+              name="target"
+              value="<%= target %>"
+            />
+            <div class="message"></div>
+          </div>
+          <button
+            id="submitBtn"
+            type="button"
+            class="btn main-btn main-btn-lg full-width tw-bg-red2 my-3 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200 mb-5"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- Body-content -->
+
+    <%- include("includes/footer.ejs") %>
+    <script src="/src/controllers/main/addSavings.js" type="module"></script>
+  </body>
+</html>

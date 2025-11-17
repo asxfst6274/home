@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <%- include("includes/head.ejs") %>
+
+  <body>
+    <%- include("includes/navigation.ejs") %>
+    <!--  -->
+
+    <!-- Body-content -->
+    <div class="body-content">
+      <div class="mobile-screen">
+        <%- include("../share/notice.ejs") %>
+        <div
+          class="section-header d-block tw-border-b-4 tw-border-red1 mb-3 pb-2"
+        >
+          <h2 class="text-center">Request A loan</h2>
+        </div>
+        <form action="/loans" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+
+          <h2 class="mb-3 mt-4">
+            <span class="tw-border-b-2 tw-border-gray-300 pb-1 px-2"
+              >Loan Is For?</span
+            >
+          </h2>
+          <div class="form-group" id="title">
+            <input
+              type="text"
+              class="form-control tw-border-gray-400 tw-shadow-sm rounded"
+              id="input8"
+              placeholder="Reason for Loan"
+              name="title"
+              value="<%= inputTitle %>"
+            />
+            <div class="message"></div>
+          </div>
+          <h2 class="mb-3 mt-4">
+            <span class="tw-border-b-2 tw-border-gray-300 pb-1 px-2"
+              >Amount
+            </span>
+          </h2>
+          <div class="form-group mb-15" id="target">
+            <input
+              type="number"
+              class="form-control tw-border-gray-400 tw-shadow-sm rounded"
+              id="input8"
+              placeholder="Amount"
+              name="amount"
+              value="<%= amount %>"
+            />
+            <div class="message"></div>
+          </div>
+          <button
+            id="submitBtn"
+            type="button"
+            class="btn main-btn main-btn-lg full-width tw-bg-red2 my-3 tw-text-sm rounded tw-shadow-lg tw-shadow-red-200 mb-5"
+          >
+            Request Loan
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- Body-content -->
+
+    <%- include("includes/footer.ejs") %>
+    <script src="/src/controllers/main/requestLoans.js" type="module"></script>
+  </body>
+</html>

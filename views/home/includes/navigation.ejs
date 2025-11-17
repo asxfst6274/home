@@ -1,0 +1,164 @@
+<style>
+  .cta-one__btn {
+    color: var(--sinace-black) !important;
+    background-color: var(--sinace-white);
+  }
+  .thm-btn:hover {
+    color: var(--sinace-white) !important;
+  }
+
+  .main-slider__btn:hover {
+    color: var(--sinace-base) !important;
+  }
+</style>
+
+<header class="main-header">
+  <nav class="main-menu">
+    <div class="main-menu__wrapper">
+      <div class="main-menu__wrapper-inner">
+        <div class="main-menu__logo">
+          <a href="/"
+            ><img src="<%= dataFile.logo %>" alt="Logo" width="150px"
+          /></a>
+        </div>
+        <% if(dataFile.phone){ %>
+        <div class="main-menu__call">
+          <div class="main-menu__call-icon">
+            <span class="icon-telephone"></span>
+          </div>
+          <div class="main-menu__call-content">
+            <p class="main-menu__call-sub-title">Call Anytime</p>
+            <h5 class="main-menu__call-number">
+              <a href="tel:<%= dataFile.phone  %>"><%= dataFile.phone %></a>
+            </h5>
+          </div>
+        </div>
+        <% } %>
+        <div class="main-menu__wrapper-inner-content">
+          <div class="main-menu__top">
+            <div class="main-menu__top-inner">
+              <div class="main-menu__top-left">
+                <ul class="list-unstyled main-menu__contact-list">
+                  <li>
+                    <div class="icon">
+                      <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="text">
+                      <p>
+                        <a href="mailto:<%= dataFile.email %>"
+                          ><%= dataFile.email %></a
+                        >
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="icon">
+                      <i class="fas fa-map-marker"></i>
+                    </div>
+                    <div class="text">
+                      <p><%= `${dataFile.address1}, ${dataFile.location}` %></p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="main-menu__top-right">
+                <ul class="list-unstyled main-menu__top-menu">
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/faq">Faq</a></li>
+                  <li><a href="/contact">Contact</a></li>
+                </ul>
+
+                <div class="main-menu__social">
+                  <a href="javascript:(0)"><i class="fab fa-twitter"></i></a>
+                  <a href="javascript:(0)"><i class="fab fa-facebook"></i></a>
+                  <a href="javascript:(0)"
+                    ><i class="fab fa-pinterest-p"></i
+                  ></a>
+                  <a href="javascript:(0)"><i class="fab fa-instagram"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="main-menu__bottom">
+            <div class="main-menu__bottom-inner">
+              <div class="main-menu__main-menu-box">
+                <a href="javascript:(0)" class="mobile-nav__toggler"
+                  ><i class="fa fa-bars"></i
+                ></a>
+                <ul class="main-menu__list">
+                  <li>
+                    <a href="/">Home </a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="javascript:(0)">Services</a>
+                    <ul class="sub-menu">
+                      <li><a href="/accounts">Accounts</a></li>
+                      <li>
+                        <a href="/loan">Loans</a>
+                      </li>
+                      <!-- <li><a href="/cards">Cards</a></li> -->
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="javascript:(0)">About</a>
+                    <ul class="sub-menu">
+                      <li>
+                        <a href="/about">About Us</a>
+                      </li>
+                      <li><a href="/team">Our Team</a></li>
+                      <li>
+                        <a href="/testimonials">Testimonials</a>
+                      </li>
+                      <li><a href="/faq">Faqs</a></li>
+                      <li><a href="/policy">Privacy Policy</a></li>
+                      <li><a href="/terms">Terms & Conditions</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a href="/contact">Contact Us</a>
+                  </li>
+                  <li class="d-lg-none">
+                    <a href="/register" class="main-slider__btn thm-btn shadow"
+                      >Register</a
+                    >
+                  </li>
+                  <li class="d-lg-none">
+                    <a href="/login" class="cta-one__btn thm-btn shadow"
+                      >Login</a
+                    >
+                  </li>
+                  <% if(dataFile.appLink){ %>
+                  <li class="d-lg-none">
+                    <div>
+                      <a href="/share/mobile-bank.apk" target="_blank"
+                        ><img
+                          src="/share/images/google-play.webp"
+                          alt="Logo"
+                          width="150px"
+                      /></a>
+                    </div>
+                  </li>
+                  <% } %>
+                </ul>
+              </div>
+              <div class="main-menu__right">
+                <div class="main-menu__search-box">
+                  <a href="/register" class="main-slider__btn thm-btn"
+                    >Register</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="stricky-header stricked-menu main-menu">
+  <div class="sticky-header__content"></div>
+  <!-- /.sticky-header__content -->
+</div>
+<!-- /.stricky-header -->

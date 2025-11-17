@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <%- include("includes/head.ejs") %>
+
+  <body>
+    <%- include("includes/navigation.ejs") %>
+
+    <!-- Body-content -->
+    <div class="body-content">
+      <div class="mobile-screen">
+        <%- include("../share/notice.ejs") %>
+        <div
+          class="section-header d-block tw-border-b-4 tw-border-red1 mb-3 pb-2"
+        >
+          <h2 class="text-center">My Bills</h2>
+        </div>
+        <div class="tab-selector">
+          <!-- Tab-selector-list -->
+          <ul class="tab-selector-list">
+            <li class="active" data-tab-list="1">
+              <button>Waiting Bills</button>
+            </li>
+            <li data-tab-list="2">
+              <button>Paid Bills</button>
+            </li>
+          </ul>
+          <!-- Tab-selector-list -->
+
+          <!-- Tab-selector-details -->
+          <div class="tab-selector-details">
+            <div class="tab-selector-details-item active" data-tab-details="1">
+              <div class="row gx-3">
+                <div class="col-6 pb-15">
+                  <div class="monthly-bill-card monthly-bill-card-green">
+                    <div class="monthly-bill-thumb">
+                      <img src="/main/images/cm-logo-1.png" alt="logo" />
+                    </div>
+                    <div class="monthly-bill-body">
+                      <h3><a href="#">Envato.com</a></h3>
+                      <p>Debit Services Subscribtion</p>
+                    </div>
+                    <div class="monthly-bill-footer monthly-bill-action">
+                      <a href="#" class="btn main-btn">Pay Now</a>
+                      <p class="monthly-bill-price">$99.99</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 pb-15">
+                  <div class="monthly-bill-card monthly-bill-card-green">
+                    <div class="monthly-bill-thumb">
+                      <img src="/main/images/cm-logo-2.png" alt="logo" />
+                    </div>
+                    <div class="monthly-bill-body">
+                      <h3><a href="#">Oban.com</a></h3>
+                      <p>Credit Services Subscribtion</p>
+                    </div>
+                    <div class="monthly-bill-footer monthly-bill-action">
+                      <a href="#" class="btn main-btn">Pay Now</a>
+                      <p class="monthly-bill-price">$75.00</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 pb-15">
+                  <div class="monthly-bill-card monthly-bill-card-green">
+                    <div class="monthly-bill-thumb">
+                      <img src="/main/images/cm-logo-3.png" alt="logo" />
+                    </div>
+                    <div class="monthly-bill-body">
+                      <h3><a href="#">Nezox.com</a></h3>
+                      <p>Internet Monthly Subscribtion</p>
+                    </div>
+                    <div class="monthly-bill-footer monthly-bill-action">
+                      <a href="#" class="btn main-btn">Pay Now</a>
+                      <p class="monthly-bill-price">$50.50</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 pb-15">
+                  <div class="monthly-bill-card monthly-bill-card-green">
+                    <div class="monthly-bill-thumb">
+                      <img src="/main/images/cm-logo-4.png" alt="logo" />
+                    </div>
+                    <div class="monthly-bill-body">
+                      <h3><a href="#">Depan.com</a></h3>
+                      <p>Depan Monthly Subscribtion</p>
+                    </div>
+                    <div class="monthly-bill-footer monthly-bill-action">
+                      <a href="#" class="btn main-btn">Pay Now</a>
+                      <p class="monthly-bill-price">$100.99</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 pb-15">
+                  <div class="monthly-bill-card monthly-bill-card-green">
+                    <div class="monthly-bill-thumb">
+                      <img src="/main/images/cm-logo-5.png" alt="logo" />
+                    </div>
+                    <div class="monthly-bill-body">
+                      <h3><a href="#">Scora.com</a></h3>
+                      <p>Monthly Health Insurance</p>
+                    </div>
+                    <div class="monthly-bill-footer monthly-bill-action">
+                      <a href="#" class="btn main-btn">Pay Now</a>
+                      <p class="monthly-bill-price">$70.50</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 pb-15">
+                  <div class="monthly-bill-card monthly-bill-card-green">
+                    <div class="monthly-bill-thumb">
+                      <img src="/main/images/cm-logo-6.png" alt="logo" />
+                    </div>
+                    <div class="monthly-bill-body">
+                      <h3><a href="#">Deniz.com</a></h3>
+                      <p>Electric Monthly Subscription</p>
+                    </div>
+                    <div class="monthly-bill-footer monthly-bill-action">
+                      <a href="#" class="btn main-btn">Pay Now</a>
+                      <p class="monthly-bill-price">$99.99</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-selector-details-item" data-tab-details="2">
+              <div class="row gx-3">
+                <div class="col-6 pb-15">
+                  <div class="monthly-bill-card monthly-bill-card-green">
+                    <div class="monthly-bill-thumb">
+                      <img src="/main/images/cm-logo-1.png" alt="logo" />
+                    </div>
+                    <div class="monthly-bill-body">
+                      <h3><a href="#">Envato.com</a></h3>
+                      <p>Debit Services Subscribtion</p>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                      <p class="monthly-bill-price tw-text-red1">
+                        Expiring on:
+                      </p>
+                      <p>12/01/2023</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 pb-15">
+                  <div class="monthly-bill-card monthly-bill-card-green">
+                    <div class="monthly-bill-thumb">
+                      <img src="/main/images/cm-logo-2.png" alt="logo" />
+                    </div>
+                    <div class="monthly-bill-body">
+                      <h3><a href="#">Oban.com</a></h3>
+                      <p>Credit Services Subscribtion</p>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                      <p class="monthly-bill-price tw-text-red1">
+                        Expiring on:
+                      </p>
+                      <p>12/01/2023</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 pb-15">
+                  <div class="monthly-bill-card monthly-bill-card-green">
+                    <div class="monthly-bill-thumb">
+                      <img src="/main/images/cm-logo-3.png" alt="logo" />
+                    </div>
+                    <div class="monthly-bill-body">
+                      <h3><a href="#">Nezox.com</a></h3>
+                      <p>Internet Monthly Subscribtion</p>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                      <p class="monthly-bill-price tw-text-red1">
+                        Expiring on:
+                      </p>
+                      <p>12/01/2023</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 pb-15">
+                  <div class="monthly-bill-card monthly-bill-card-green">
+                    <div class="monthly-bill-thumb">
+                      <img src="/main/images/cm-logo-4.png" alt="logo" />
+                    </div>
+                    <div class="monthly-bill-body">
+                      <h3><a href="#">Depan.com</a></h3>
+                      <p>Depan Monthly Subscribtion</p>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                      <p class="monthly-bill-price tw-text-red1">
+                        Expiring on:
+                      </p>
+                      <p>12/01/2023</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Tab-selector-details -->
+        </div>
+      </div>
+    </div>
+    <!-- Body-content -->
+
+    <%- include("includes/footer.ejs") %>
+    <script src="/src/controllers/main/bills.js" type="module"></script>
+  </body>
+</html>

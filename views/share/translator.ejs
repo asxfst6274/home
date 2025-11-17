@@ -1,0 +1,39 @@
+<script type="text/javascript">
+  const onLoadScript = setInterval(() => {
+    if (document.querySelector(`.goog-te-combo option`)) {
+      document.querySelector(
+        ".skiptranslate.goog-te-gadget"
+      ).childNodes[1].textContent = "";
+      clearTimeout(onLoadScript);
+    }
+  }, 100);
+</script>
+
+<style>
+  .goog-logo-link,
+  .goog-te-banner-frame.skiptranslate {
+    display: none !important;
+  }
+
+  body {
+    top: 0px !important;
+    position: static !important;
+  }
+
+  .goog-te-combo {
+    padding: 8px 16px;
+  }
+
+  .skiptranslate.goog-te-gadget > span {
+    display: none;
+  }
+
+  /* hidden header  */
+  body > .skiptranslate {
+    display: none;
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
+<script type="text/javascript" src="/share/js/google-translate.js"></script>

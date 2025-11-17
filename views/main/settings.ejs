@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <%- include("includes/head.ejs") %>
+
+  <body>
+    <%- include("includes/navigation.ejs") %>
+
+    <!-- Body-content -->
+    <div class="body-content">
+      <div class="mobile-screen">
+        <%- include("../share/notice.ejs") %>
+        <div
+          class="section-header d-block tw-border-b-4 tw-border-red1 mb-3 pb-2"
+        >
+          <h2 class="text-center">Account Settings</h2>
+        </div>
+        <!-- Setting -->
+        <form action="/settings/profile?_csrf=<%= csrfToken %>" method="post" enctype="multipart/form-data">
+        <div class="setting-section pb-15">
+          <div class="user-setting-thumb">
+            <label for="upThumb" class="tw-group">
+            <div class="user-setting-thumb-up position-relative">
+              <div class="position-absolute d-flex justify-content-center align-items-center tw-top-0 tw-bottom-0 tw-left-0 tw-right-0 tw-bg-red1 tw-bg-opacity-10">
+              <span class="material-icons group-hover:tw-text-red1">
+                photo_camera
+                </span>
+              </div>
+              <img
+                src="<%= dataFile.imageHost %>/user/profile/<%= cUser.profile ? cUser.profile : 'default.png' %>"
+                alt="profile" id="imagePreview"
+                width="64" height="64"
+              />
+            </div> 
+            <input type="file" name="user" id="upThumb" class="d-none" accept="image/*" />
+            </label>
+          </div>
+          <div id="uploadBtn" class="d-none d-flex justify-content-center mb-3 gap-2 -tw-mt-3">
+            <button class="btn main-btn">Save</button>
+          </div>
+        </form>
+
+          <!-- Setting-list -->
+          <div class="setting-list mb-3">
+            <ul>
+              <li>
+                <a href="/kyc">KYC Verification</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Setting-list -->
+
+          <!-- Setting-list -->
+          <div class="setting-list">
+            <ul>
+              <li>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#accountInfo"
+                  >Account Info</a
+                >
+              </li>
+              <li>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#emailModal"
+                  >Update E-mail</a
+                >
+              </li>
+              <li>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#phoneModal"
+                  >Update Phone Number</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  data-bs-toggle="modal"
+                  data-bs-target="#addressModal"
+                  >Address</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  data-bs-toggle="modal"
+                  data-bs-target="#passwordModal"
+                  >Update Password</a
+                >
+              </li>
+              <li>
+                <a href="/logout">Logout</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Setting-list -->
+        </div>
+        <!-- Setting -->
+      </div>
+    </div>
+    <!-- Body-content -->
+<input type="hidden" name="_csrf" id="csrf" value="<%= csrfToken %>">
+    <!-- account-info-modal -->
+    <div
+      class="modal fade"
+      id="accountInfo"
+      tabindex="-1"
+      aria-labelledby="accountInfo"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog round-top">
+        <div class="modal-content mobile-screen px-0">
+          <div class="container">
+            <div class="modal-header py-3">
+              <div class="modal-header-title">
+                <h5 class="modal-title">Account Info</h5>
+              </div>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <span class="material-icons pt-3">close</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="payment-list pb-15 mb-4">
+                <div class="payment-list-details">
+                  <div class="payment-list-item payment-list-title">
+                    Account Status
+                  </div>
+                  <div class="payment-list-item payment-list-info"><span class="badge bg-<%= cUser.status === 'pending' ? 'warning' : 'success' %>"><%= cUser.status === 'pending' ? 'Under review' : 'Verifield' %></span></div>
+                </div>
+                <div class="payment-list-details">
+                  <div class="payment-list-item payment-list-title">
+                    Account Type
+                  </div>
+                  <div class="payment-list-item payment-list-info"><%= helpers.toTitle(cUser.accountType) %></div>
+                </div>
+                <div class="payment-list-details">
+                  <div class="payment-list-item payment-list-title">
+                    Account Number
+                  </div>
+                  <div class="payment-list-item payment-list-info">
+                    <%= helpers.groupString(cUser.accountNumber,3) %>
+                  </div>
+                </div>
+                <div class="payment-list-details">
+                  <div class="payment-list-item payment-list-title">
+                    Routing Number
+                  </div>
+                  <div class="payment-list-item payment-list-info">
+                    <%= helpers.groupString(dataFile.routing,3) %>
+                  </div>
+                </div>
+                <div class="payment-list-details">
+                  <div class="payment-list-item payment-list-title">
+                    Account Name
+                  </div>
+                  <div
+                    class="payment-list-item payment-list-info text-capitalize"
+                  >
+                    <%= cUser.name %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- account-info-modal -->
+
+    <!-- Email-modal -->
+    <div
+      class="modal fade"
+      id="emailModal"
+      tabindex="-1"
+      aria-labelledby="emailModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog round-top">
+        <div class="modal-content mobile-screen px-0">
+          <div class="container">
+            <div class="modal-header py-3">
+              <div class="modal-header-title">
+                <h5 class="modal-title">Update E-mail</h5>
+              </div>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <span class="material-icons pt-3">close</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="emailForm" action="/settings/email" method="post">
+                <div class="form-group mb-15" id="email">
+                  <label class="form-label">Email</label>
+                  <input
+                  name="email"
+                    type="text"
+                    class="form-control"
+                    placeholder="Email address"
+                    value="<%= cUser.email %>"
+                  />
+                  <div class="message"></div>
+                </div>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button
+                  type="button" id="emailBtn" data-form="#emailForm"
+                  class="btn main-btn main-btn-lg full-width tw-bg-red2 mb-5"
+                >
+                  Update E-mail
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Email-modal -->
+
+    <!-- Phone-modal -->
+    <div
+      class="modal fade"
+      id="phoneModal"
+      tabindex="-1"
+      aria-labelledby="phoneModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog round-top">
+        <div class="modal-content mobile-screen px-0">
+          <div class="container">
+            <div class="modal-header py-3">
+              <div class="modal-header-title">
+                <h5 class="modal-title">Update Phone Number</h5>
+              </div>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <span class="material-icons pt-3">close</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="phoneForm" action="/settings/phone" method="post">
+                <div class="row mb-3 g-2">
+                  <div class="col-3" id="code">
+                    <div class="form-group">
+                    <label>Code</label>
+                    <select
+                      class="form-control mb-0 tw-border-gray-300 tw-border-2"
+                      name="code"
+                    >
+                    <% phoneCodes.forEach(country => { %>
+                      <option value="<%= country.code %>" 
+                        <%= country.code === cUser.phoneCountryCode ? 'selected' : ''%>
+                        >
+                        <%= country.iso %> +<%= country.code %>
+                      </option>
+                      <% }) %>
+                    </select>
+                    <div class="message"></div>
+                  </div>
+                  </div>
+                  <div class="col-9">
+                    <div class="form-group mb-0" id="phone">
+                      <label>Mobile number</label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        class="form-control mb-0 tw-border-gray-300 tw-border-2"
+                        placeholder="Mobile number"
+                        value="<%= cUser.phone %>"
+                      />
+                      <div class="message"></div>
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button data-form="#phoneForm"
+                  type="button" id="phoneBtn"
+                  class="btn main-btn main-btn-lg full-width tw-bg-red2 mb-5"
+                >
+                  Update Phone Number
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Phone-modal -->
+
+    <!-- Address-modal -->
+    <div
+      class="modal fade"
+      id="addressModal"
+      tabindex="-1"
+      aria-labelledby="addressModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog round-top">
+        <div class="modal-content mobile-screen px-0">
+          <div class="container">
+            <div class="modal-header py-3">
+              <div class="modal-header-title">
+                <h5 class="modal-title">Address</h5>
+              </div>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <span class="material-icons pt-3">close</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="addressForm" action="/settings/address?x-csrf-token=<%= csrfToken %>" method="post">
+                <div class="form-group mb-15" id="street">
+                  <label class="form-label">Street</label>
+                  <input
+                  name="street"
+                    type="text"
+                    class="form-control"
+                    placeholder="Street"
+                    value="<%= cUser.street %>"
+                  />
+                  <div class="message"></div>
+                </div>
+                <div class="form-group mb-15" id="city">
+                  <label class="form-label">City</label>
+                  <input
+                  name="city"
+                    type="text"
+                    class="form-control text-capitalize"
+                    placeholder="City"
+                    value="<%= cUser.city %>"
+                  />
+                  <div class="message"></div>
+                </div>
+                <div class="form-group mb-15" id="state">
+                  <label class="form-label">State / Province</label>
+                  <input
+                  name="state"
+                    type="text"
+                    class="form-control text-capitalize"
+                    placeholder="State / Province"
+                    value="<%= cUser.state %>"
+                  />
+                  <div class="message"></div>
+                </div>
+                <div class="form-group mb-15">
+                  <label class="form-label">Country</label>
+                  <select
+                  class="form-control mb-0 tw-border-gray-300 tw-border-2"
+                  name="country"
+                >
+                <% countries.forEach(country1 =>{ %>
+                  <option value="<%= country1.name %>"
+                    <%= cUser.country === country1.name ? 'selected' : '' %>>
+                    <%= country1.name %>
+                  </option>
+                  <% }) %>
+              </select>
+                </div>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button data-form="#addressForm"
+                  type="button" id="addressBtn"
+                  class="btn main-btn main-btn-lg full-width tw-bg-red2 mb-5"
+                >
+                  Update Address
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Address-modal -->
+
+    <!-- Password-modal -->
+    <div
+      class="modal fade"
+      id="passwordModal"
+      tabindex="-1"
+      aria-labelledby="passwordModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog round-top">
+        <div class="modal-content mobile-screen px-0">
+          <div class="container">
+            <div class="modal-header py-3">
+              <div class="modal-header-title">
+                <h5 class="modal-title">Change Password</h5>
+              </div>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <span class="material-icons pt-3">close</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="passwordForm" action="/settings/password" method="post">
+                <div class="form-group pb-15" id="pass">
+                  <label>Current Password</label>
+                  <div class="input-group">
+                    <input
+                      type="password"
+                      name="pass"
+                      class="form-control password"
+                      required
+                      placeholder="**********"
+                    />
+                    <span class="input-group-text reveal">
+                      <i class="flaticon-invisible pass-close"></i>
+                      <i class="flaticon-visibility pass-view"></i>
+                    </span>
+                  </div>
+                  <div class="message"></div>
+                </div>
+                <div class="form-group pb-15" id="nPass">
+                  <label>New Password</label>
+                  <div class="input-group">
+                    <input
+                      type="password"
+                      name="nPass"
+                      class="form-control password"
+                      required
+                      placeholder="**********"
+                    />
+                    <span class="input-group-text reveal">
+                      <i class="flaticon-invisible pass-close"></i>
+                      <i class="flaticon-visibility pass-view"></i>
+                    </span>
+                  </div>
+                  <div class="message"></div>
+                </div>
+                <div class="form-group pb-15" id="cPass">
+                  <label>Confirm Password</label>
+                  <div class="input-group">
+                    <input
+                      type="password"
+                      name="cPass"
+                      class="form-control password"
+                      required
+                      placeholder="**********"
+                    />
+                    <span class="input-group-text reveal">
+                      <i class="flaticon-invisible pass-close"></i>
+                      <i class="flaticon-visibility pass-view"></i>
+                    </span>
+                  </div>
+                  <div class="message"></div>
+                </div>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button data-form="#passwordForm"
+                  type="button" id="passwordBtn"
+                  class="btn main-btn main-btn-lg full-width tw-bg-red2 mb-5"
+                >
+                  Change Password
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Password-modal -->
+
+    <%- include("includes/footer.ejs") %>
+    <script src="/src/controllers/main/settings.js" type="module"></script>
+  </body>
+</html>

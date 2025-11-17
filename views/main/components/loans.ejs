@@ -1,0 +1,73 @@
+<% loans.forEach((loan) =>{
+<!--  -->
+<!--  -->
+const id = loan._id;
+<!--  -->
+const date = loan.createdAt;
+<!--  -->
+const title = loan.title;
+<!--  -->
+const amount = loan.amount;
+<!--  -->
+const status = loan.status;
+<!--  -->
+const paid = loan.paid;
+<!--  -->
+const interest = (status === 'settled' && paid - amount > 0) ? paid - amount :
+helpers.getLoanInterest(amount,loan.approved || new Date());
+<!--  -->
+const target = interest + amount;
+<!--  -->
+const progress = Math.trunc((paid/target) * 100);
+<!--  -->
+<!--  -->
+%>
+<div
+  class="progress-card mb-2 border tw-cursor-pointer tw-border-b-4"
+  data-id="<%= id %>"
+  data-title="<%= title %>"
+  data-amount="<%= helpers.dollar(amount) %>"
+  data-interest="<%= helpers.dollar(interest) %>"
+  data-target="<%= helpers.dollar(target) %>"
+  data-paid="<%= helpers.dollar(paid) %>"
+  data-progress="<%= progress %>"
+  data-date="<%= date %>"
+  data-status="<%= status %>"
+>
+  <div class="progress-card-info">
+    <div class="circular-progress" data-note="<%= progress %>">
+      <svg width="55" height="55" class="circle-svg">
+        <circle
+          cx="28"
+          cy="27"
+          r="25"
+          class="circle-progress circle-progress-path"
+        ></circle>
+        <circle
+          cx="28"
+          cy="27"
+          r="25"
+          class="circle-progress circle-progress-fill tw-stroke-blue-600"
+        ></circle>
+      </svg>
+      <div class="percent"><span class="percent-int">0</span>%</div>
+    </div>
+    <div class="progress-info-text">
+      <h3 class="text-capitalize"><%= title %></h3>
+      <p class="text-capitalize"><%= status %> loan</p>
+    </div>
+  </div>
+  <div class="">
+    <div
+      class="<%= status === 'approved' ? 'tw-text-blue-600' : status === 'settled' ? 'tw-text-green-600' : status === 'denied' ? 'tw-text-red-600' : '' %>"
+    >
+      <%= helpers.dollar(amount) %>
+    </div>
+    <div
+      class="progress-card-amount <%= status === 'approved' ? '' : 'd-none' %>"
+    >
+      +<%= helpers.dollar(interest) %>
+    </div>
+  </div>
+</div>
+<% }) %>

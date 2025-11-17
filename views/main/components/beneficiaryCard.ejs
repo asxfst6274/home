@@ -1,0 +1,68 @@
+<%
+<!-- prettier-ignore -->
+const accountMode = beneficiary.accountMode;
+const name = beneficiary.name;
+const profile = beneficiary.profile;
+const id = beneficiary._id;
+let bank;
+let accountId;
+
+switch(accountMode){
+    case "same":
+        bank = beneficiary.bank;
+        account = beneficiary.accountNumber;
+        break;
+    case "others":
+        bank = beneficiary.bank;
+        account = beneficiary.accountNumber;
+        break;
+    case "crypto":
+        bank = beneficiary.coin;
+        account = beneficiary.wallet;
+        break;
+    case "paypal":
+        bank = "Paypal";
+        account = beneficiary.paypalEmail;
+        break;
+    case "cashApp":
+        bank = "CashApp";
+        account = beneficiary.cashAppUsername;
+        break;
+}
+%>
+
+<form action="/beneficiary/transfer" method="post">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+  <input type="hidden" name="beneficiaryId" value="<%= id %>" />
+  <div class="beneficiary-card mb-2 border tw-border-b-4">
+    <button type="submit" class="text-start tw-flex-1">
+      <div class="transaction-card-info">
+        <div class="transaction-info-thumb">
+          <img
+            src="<%= dataFile.imageHost %>/beneficiary/profile/<%= profile ? profile : 'default.png' %>"
+            alt="user"
+          />
+        </div>
+        <div class="transaction-info-text">
+          <h3 class="text-capitalize"><%= name %></h3>
+          <p class="text-capitalize"><%= bank %></p>
+          <p><%= account %></p>
+        </div>
+      </div>
+    </button>
+    <div class="d-flex gap-2">
+      <a
+        href="/edit-beneficiary/<%= id %>"
+        class="material-icons d-flex justify-content-center align-items-center tw-w-8 tw-h-8 tw-text-white tw-bg-red1 rounded-circle tw-text-sm tw-shadow-md tw-shadow-red-200"
+      >
+        edit
+      </a>
+      <span
+        data-id="<%= id %>"
+        class="material-icons d-flex tw-cursor-pointer delete-beneficiary justify-content-center align-items-center tw-w-8 tw-h-8 tw-text-white tw-bg-red1 rounded-circle tw-text-sm tw-shadow-md tw-shadow-red-200"
+      >
+        delete</span
+      >
+    </div>
+  </div>
+</form>

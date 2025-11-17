@@ -1,0 +1,248 @@
+<div
+  class="d-flex gap-2 position-absolute shadow"
+  style="top: 6rem; z-index: 999; right: 0.5rem"
+>
+  <div id="google_translate_element"></div>
+</div>
+
+<footer class="footer-area">
+  <div class="right-shape">
+    <img src="/home/images/shapes/footer-right-shape.png" alt="" />
+  </div>
+
+  <!--Start Footer Top-->
+  <div class="footer-top">
+    <div class="lef-shape">
+      <span class="icon-origami"></span>
+    </div>
+    <div class="container">
+      <div class="row">
+        <!--Start single footer widget-->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 single-widget">
+          <div class="single-footer-widget single-footer-widget--link-box">
+            <div class="title">
+              <h3>Loans</h3>
+            </div>
+            <div class="footer-widget-links">
+              <ul>
+                <li><a href="loan">Home Loan</a></li>
+                <li><a href="loan">Car Loan</a></li>
+                <li><a href="loan">Two Wheeler Loan</a></li>
+                <li><a href="loan">Commercial Vehicle Loan</a></li>
+                <li><a href="loan">Personal Loan</a></li>
+                <li><a href="loan">Tractor Loan</a></li>
+                <li><a href="loan">Construction Loan</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--End single footer widget-->
+        <!--Start single footer widget-->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 single-widget">
+          <div class="single-footer-widget single-footer-widget--link-box">
+            <div class="title">
+              <h3>Rates & Charges</h3>
+            </div>
+            <div class="footer-widget-links">
+              <ul>
+                <li><a href="javascript:void(0)">Interest Rates</a></li>
+                <li><a href="javascript:void(0)">Gold Rate Today</a></li>
+                <li><a href="javascript:void(0)">Service Charges & Fees</a></li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="single-footer-widget single-footer-widget--link-box-style2"
+          >
+            <div class="title">
+              <h3>Online</h3>
+            </div>
+            <div class="footer-widget-links">
+              <ul>
+                <li><a href="/login">Mobile Banking</a></li>
+                <li><a href="/login">Internet Banking</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--End single footer widget-->
+
+        <!--Start single footer widget-->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 single-widget">
+          <div class="single-footer-widget single-footer-widget--link-box">
+            <div class="title">
+              <h3>About Us</h3>
+            </div>
+            <div class="footer-widget-links">
+              <ul>
+                <li><a href="/about">Our Story</a></li>
+                <li><a href="/about">Board of Directors</a></li>
+                <li><a href="/about">Management Committee</a></li>
+                <li><a href="/about">Media</a></li>
+                <li><a href="/about">Investor Relations</a></li>
+                <li><a href="/about">Awards & Recognition</a></li>
+                <li><a href="/about">Careers</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--End single footer widget-->
+
+        <!--Start single footer widget-->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 single-widget">
+          <div class="single-footer-widget single-footer-widget--link-box">
+            <div class="title">
+              <h3>Accounts</h3>
+            </div>
+            <div class="footer-widget-links">
+              <ul>
+                <li>
+                  <a href="/accounts">Savings Account</a>
+                </li>
+                <li>
+                  <a href="/accounts">Current Account</a>
+                </li>
+                <li>
+                  <a href="/accounts">Fixed Deposit Account</a>
+                </li>
+                <li><a href="/accounts">Salary Account</a></li>
+                <li>
+                  <a href="/accounts">Recuring Deposit a/c</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--End single footer widget-->
+      </div>
+    </div>
+  </div>
+  <!--End Footer Top-->
+
+  <!--Start Footer-->
+  <div class="footer new-font">
+    <div class="container">
+      <div class="row">
+        <!--Start single footer widget-->
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+          <div class="single-footer-widget marbtm50">
+            <div class="our-company-info">
+              <div class="footer-logo-style1">
+                <a href="/">
+                  <img
+                    src="<%= dataFile.logo2 %>"
+                    alt="Logo"
+                    class="tw-h-[50px]"
+                  />
+                </a>
+              </div>
+              <div class="copyright-text">
+                <p>
+                  Copyright &copy;
+                  <script>
+                    document.writeln(new Date().getFullYear());
+                  </script>
+                  <a href="/"><%= dataFile.name %>.</a> Licensed by the<br />
+                  Central Bank of <%= dataFile.location %>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End single footer widget-->
+
+        <!--Start single footer widget-->
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+          <div class="single-footer-widget marbtm50">
+            <div class="footer-widget-contact-info">
+              <ul>
+                <li>
+                  <h3 class="new-font">
+                    <a href="tel:<%= dataFile.phone %>"
+                      ><%= dataFile.phone %></a
+                    >
+                  </h3>
+                  <p>Customer Care</p>
+                </li>
+                <li>
+                  <h3 class="new-font">Mon - Fri: 9.00am to 5.00pm</h3>
+                  <p>Banking Hours</p>
+                </li>
+                <li>
+                  <h3 class="new-font">
+                    <%= dataFile.address1 %><br />
+                    <%= dataFile.address2 %> <%= dataFile.location %>
+                  </h3>
+                  <p>Address</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--End single footer widget-->
+
+        <!--Start single footer widget-->
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+          <div class="single-footer-widget">
+            <div class="single-footer-widget-right-colum">
+              <ul>
+                <li>
+                  <a href="/login">
+                    Login
+                    <span class="icon-home-button"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/register">
+                    Create an account
+                    <span class="icon-payment"></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--End single footer widget-->
+      </div>
+    </div>
+  </div>
+  <!--End Footer-->
+
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="bottom-inner">
+        <div class="footer-menu">
+          <ul>
+            <li><a href="/policy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms & Conditions</a></li>
+            <li></li>
+          </ul>
+        </div>
+        <!-- <div class="footer-social-link">
+          <ul class="clearfix">
+            <li>
+              <a href="#">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+          </ul>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,78 @@
+<div class="mobile-nav__wrapper">
+  <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+  <div class="mobile-nav__content">
+    <span class="mobile-nav__close mobile-nav__toggler">
+      <i class="fas fa-plus"></i>
+    </span>
+    <div class="logo-box">
+      <a href="/">
+        <img src="<%= dataFile.logo %>" alt="Logo" class="tw-h-[50px]" />
+      </a>
+    </div>
+    <div class="mobile-nav__container"></div>
+    <ul class="mobile-nav__contact list-unstyled">
+      <li>
+        <i class="fa fa-envelope"></i>
+        <a href="mailto:<%= dataFile.email %>"><%= dataFile.email %></a>
+      </li>
+      <li>
+        <i class="fa fa-phone-alt"></i>
+        <a href="tel:<%= dataFile.phone %>"><%= dataFile.phone %></a>
+      </li>
+    </ul>
+    <!-- <div class="mobile-nav__social">
+      <a href="#" class="fab fa-twitter"></a>
+      <a href="#" class="fab fa-facebook-square"></a>
+      <a href="#" class="fab fa-pinterest-p"></a>
+      <a href="#" class="fab fa-instagram"></a>
+    </div> -->
+  </div>
+</div>
+
+<!-- <div class="search-popup">
+  <div class="search-popup__overlay search-toggler"></div>
+  <div class="search-popup__content">
+    <form action="#">
+      <label for="search" class="sr-only">search here</label>
+      <input type="text" id="search" placeholder="Search Here..." />
+      <button type="submit" aria-label="search submit" class="thm-btn">
+        <i class="icon-search"></i>
+      </button>
+    </form>
+  </div>
+</div> -->
+
+<a href="#" data-target="html" class="scroll-to-target scroll-to-top">
+  <i class="icon-chevron"></i>
+</a>
+
+<%- include("../../share/translator.ejs") %>
+
+<script src="/home/vendors/jquery/jquery-3.6.0.min.js"></script>
+<script src="/home/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/home/vendors/bxslider/jquery.bxslider.min.js"></script>
+<script src="/home/vendors/circleType/jquery.circleType.js"></script>
+<script src="/home/vendors/circleType/jquery.lettering.min.js"></script>
+<script src="/home/vendors/isotope/isotope.js"></script>
+<script src="/home/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js"></script>
+<script src="/home/vendors/jquery-appear/jquery.appear.min.js"></script>
+<script src="/home/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="/home/vendors/jquery-migrate/jquery-migrate.min.js"></script>
+<script src="/home/vendors/jquery-ui/jquery-ui.js"></script>
+<script src="/home/vendors/jquery-validate/jquery.validate.min.js"></script>
+<script src="/home/vendors/nice-select/jquery.nice-select.min.js"></script>
+<script src="/home/vendors/odometer/odometer.min.js"></script>
+<script src="/home/vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="/home/vendors/swiper/swiper.min.js"></script>
+<script src="/home/vendors/vegas/vegas.min.js"></script>
+<script src="/home/vendors/wnumb/wNumb.min.js"></script>
+<script src="/home/vendors/wow/wow.js"></script>
+<script src="/home/vendors/extra-scripts/jquery.paroller.min.js"></script>
+<script src="/home/vendors/language-switcher/jquery.polyglot.language.switcher.js"></script>
+<script src="/home/vendors/aos/aos.js"></script>
+<script src="/home/vendors/extra-scripts/pagenav.js"></script>
+
+<script src="/home/vendors/round-progress-bar/knob.js"></script>
+
+<!-- Template js -->
+<script src="/home/js/custom.js"></script>

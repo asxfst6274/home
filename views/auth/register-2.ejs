@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <%- include("includes/head.ejs") %>
+  </head>
+
+  <body class="tw-bg-milk">
+    <!-- Start Preloader Area -->
+    <%- include("../share/preloader.ejs") %>
+    <!-- End Preloader Area -->
+
+    <!-- Start Sign In Area -->
+    <section class="sign-in-area pb-4">
+      <%- include("includes/header.ejs") %>
+      <div class="container">
+        <%- include("../share/notice.ejs") %>
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+            <div class="register-form">
+              <div class="d-flex gap-2">
+                <h2 class="fw-bold ps-0 tw-opacity-50">2</h2>
+                <h2 class="tw-border-l-4 tw-border-red1">Personal Info</h2>
+              </div>
+              <form action="/register" method="post">
+                <input
+                  type="hidden"
+                  name="_csrf"
+                  id="csrf"
+                  value="<%= csrfToken %>"
+                />
+                <input type="hidden" name="name" value="<%= name %>" />
+                <input
+                  type="hidden"
+                  name="accountType"
+                  value="<%= accountType %>"
+                />
+                <input
+                  type="hidden"
+                  name="phoneCountryCode"
+                  value="<%= phoneCountryCode %>"
+                />
+                <input type="hidden" name="phone" value="<%= phone %>" />
+                <input type="hidden" name="email" value="<%= email %>" />
+                <input type="hidden" name="pass" value="<%= pass %>" />
+                <input type="hidden" name="cpass" value="<%= cpass %>" />
+                <input type="hidden" id="minAge" value="<%= dataFile.minAge %>" />
+                <div class="row">
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group" id="dob">
+                      <label>Date of birth</label>
+                      <input
+                      id="date"
+                        name="dob"
+                        type="date"
+                        class="form-control tw-border-gray-300 tw-border-2"
+                        placeholder="dd/mm/yy"
+                        value="<%= dob %>"
+                      />
+                      <div class="message"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                      <label>Gender</label>
+                      <select
+                        class="text-dark tw-border-gray-300 tw-border-2"
+                        name="gender"
+                      >
+                        <option value="male"
+                        <%= gender === 'male' ? 'selected' : '' %>
+                        >Male</option>
+                        <option value="female"
+                        <%= gender === 'female' ? 'selected' : '' %>
+                        >Female</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                      <label>Marital status</label>
+                      <select
+                        name="maritalStatus"
+                        class="text-dark tw-border-gray-300 tw-border-2"
+                      >
+                        <option value="single"
+                        <%= maritalStatus === 'single' ? 'selected' : '' %>
+                        >Single</option>
+                        <option value="married"
+                        <%= maritalStatus === 'married' ? 'selected' : '' %>
+                        >Married</option>
+                        <option value="divorced"
+                        <%= maritalStatus === 'divorced' ? 'selected' : '' %>
+                        >Divorced</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group" id="income">
+                      <label>Monthly income</label>
+                      <input
+                        name="income"
+                        type="text"
+                        class="form-control tw-border-gray-300 tw-border-2"
+                        placeholder="Monthly income"
+                        value="<%= income %>"
+                      />
+                      <div class="message"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <div class="form-group" id="occupation">
+                      <label>Occupation</label>
+                      <input
+                        name="occupation"
+                        type="text"
+                        class="form-control tw-border-gray-300 tw-border-2"
+                        placeholder="Occupation"
+                        value="<%= occupation %>"
+                      />
+                      <div class="message"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="form-group" id="street">
+                          <label>Street address</label>
+                          <input
+                            name="street"
+                            type="text"
+                            class="form-control tw-border-gray-300 tw-border-2"
+                            placeholder="Street address"
+                            value="<%= street %>"
+                          />
+                      <div class="message"></div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6">
+                        <div class="form-group" id="city">
+                          <label>City</label>
+                          <input
+                            name="city"
+                            type="text"
+                            class="form-control tw-border-gray-300 tw-border-2"
+                            placeholder="City"
+                            value="<%= city %>"
+                          />
+                      <div class="message"></div> 
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6">
+                        <div class="form-group" id="state">
+                          <label>State / Province</label>
+                          <input
+                            name="state"
+                            type="text"
+                            class="form-control tw-border-gray-300 tw-border-2"
+                            placeholder="State / Province"
+                            value="<%= state %>"
+                          />
+                      <div class="message"></div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6">
+                        <div class="form-group" id="zipCode">
+                          <label>Postal / Zip code</label>
+                          <input
+                            name="zipCode"
+                            type="text"
+                            class="form-control tw-border-gray-300 tw-border-2"
+                            placeholder="Postal / Zip code"
+                            value="<%= zipCode %>"
+                          />
+                       <div class="message"></div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label>Country</label>
+                          <select class="text-dark tw-border-gray-300 tw-border-2" name="country">
+                            <% countries.forEach(country1 =>{ %>
+                            <option value="<%= country1.name %>"
+                              <%= country === country1.name ? 'selected' : country1.code === iso ? 'selected' : '' %>>
+                              <%= country1.name %>
+                            </option>
+                            <% }) %>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <div class="banner-form-btn">
+                      <button type="button" class="default-btn tw-bg-red2" id="submitBtn">
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Sign In Area -->
+
+    <%- include("includes/footer.ejs") %>
+    <script src="/src/controllers/auth/register-2.js" type="module"></script>
+
+  </body>
+</html>

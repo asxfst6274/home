@@ -1,0 +1,57 @@
+<% savings.forEach((saving) =>{
+<!--  -->
+<!--  -->
+const id = saving._id;
+<!--  -->
+const title = saving.title;
+<!--  -->
+const target = saving.target;
+<!--  -->
+const saved = saving.saved;
+<!--  -->
+const color = saving.color;
+<!--  -->
+const category = saving.category;
+<!--  -->
+const progress = Math.trunc((saved/target) * 100);
+<!--  -->
+<!--  -->
+%>
+<div
+  class="progress-card mb-2 border tw-cursor-pointer tw-border-b-4"
+  data-id="<%= id %>"
+  data-title="<%= title %>"
+  data-target="<%= helpers.dollar(target) %>"
+  data-saved="<%= helpers.dollar(saved) %>"
+  data-color="<%= color %>"
+  data-category="<%= category %>"
+  data-progress="<%= progress %>"
+>
+  <div class="progress-card-info">
+    <div class="circular-progress" data-note="<%= progress %>">
+      <svg width="55" height="55" class="circle-svg">
+        <circle
+          cx="28"
+          cy="27"
+          r="25"
+          class="circle-progress circle-progress-path"
+        ></circle>
+        <circle
+          cx="28"
+          cy="27"
+          r="25"
+          class="circle-progress circle-progress-fill tw-stroke-<%= color %>-600"
+        ></circle>
+      </svg>
+      <div class="percent"><span class="percent-int">0</span>%</div>
+    </div>
+    <div class="progress-info-text">
+      <h3 class="text-capitalize"><%= title %></h3>
+      <p class="text-capitalize"><%= category %></p>
+    </div>
+  </div>
+  <div class="progress-card-amount tw-text-<%= color %>-600">
+    <%= helpers.dollar(saved) %>
+  </div>
+</div>
+<% }) %>

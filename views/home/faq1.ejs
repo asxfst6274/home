@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("includes/head.ejs") -%>
+  </head>
+
+  <body>
+    <!-- Start preloader -->
+    <%- include("../share/preloader.ejs") -%>
+    <!-- End preloader -->
+
+    <div class="page-wrapper">
+      <%- include("includes/navigation.ejs") -%>
+
+      <!--Start breadcrumb area-->
+      <section class="breadcrumb-area">
+        <div
+          class="breadcrumb-area-bg"
+          style="
+            background-image: url(/home/images/backgrounds/breadcrumb-area-bg.jpg);
+          "
+        ></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="inner-content">
+                <div
+                  class="title"
+                  data-aos="fade-right"
+                  data-aos-easing="linear"
+                  data-aos-duration="500"
+                >
+                  <h2>Faq’s</h2>
+                </div>
+                <div
+                  class="breadcrumb-menu"
+                  data-aos="fade-left"
+                  data-aos-easing="linear"
+                  data-aos-duration="500"
+                >
+                  <ul>
+                    <li><a href="/">Home</a></li>
+                    <li class="active">Faq’s</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--End breadcrumb area-->
+
+      <!--Start Faq Style1 Area-->
+      <%- include("includes/faq.ejs") %>
+      <!--End Faq Style1 Area-->
+
+      <!--Start footer area -->
+      <%- include("includes/footer.ejs") %>
+      <!--End footer area-->
+    </div>
+    <!-- /.page-wrapper -->
+    <%- include("includes/bottom.ejs") -%>
+  </body>
+</html>

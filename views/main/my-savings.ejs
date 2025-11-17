@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <%- include("includes/head.ejs") %>
+
+  <body>
+    <%- include("includes/navigation.ejs") %>
+    <!--  -->
+
+    <!-- Body-content -->
+    <div class="body-content">
+      <div class="mobile-screen">
+        <%- include("../share/notice.ejs") %>
+        <div
+          class="section-header d-block tw-border-b-4 tw-border-red1 mb-3 pb-2"
+        >
+          <h2 class="text-center">My Savings</h2>
+        </div>
+        <div class="page-header-action mb-3 d-flex justify-content-center">
+          <a
+            href="/add-savings"
+            class="p-2 tw-border-2 tw-border-redLight d-inline-flex rounded"
+          >
+            <i class="flaticon-plus"></i>
+            <p>Add A New Savings</p>
+          </a>
+        </div>
+        <!-- Saving-goals-section -->
+        <div class="saving-goals-section">
+          <%- include("components/savingsGoal.ejs") %>
+        </div>
+        <!-- Saving-goals-section -->
+      </div>
+      <% if(!savings.length){ %>
+      <h2 class="text-center mt-5 tw-text-slate-500">
+        Your Savings Box is Empty :(
+      </h2>
+      <% } %>
+    </div>
+    <!-- Body-content -->
+
+    <!-- savings-details-modal -->
+    <%- include("components/savingsModal.ejs") %> <%-
+    include("components/savingsCloseModal.ejs") %>
+    <!-- Savings-modal -->
+
+    <%- include("includes/footer.ejs") %>
+    <script src="/src/controllers/main/savings.js" type="module"></script>
+  </body>
+</html>

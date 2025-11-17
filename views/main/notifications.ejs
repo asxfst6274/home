@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <%- include("includes/head.ejs") %>
+
+  <body>
+    <%- include("includes/navigation.ejs") %>
+
+    <!-- Body-content -->
+    <div class="body-content">
+      <div class="mobile-screen">
+        <%- include("../share/notice.ejs") %>
+        <div
+          class="section-header d-block tw-border-b-4 tw-border-red1 mb-3 pb-2"
+        >
+          <h2 class="text-center">Notifications</h2>
+        </div>
+        <!-- Notification-section -->
+        <div class="notification-section pb-15">
+          <!-- prettier-ignore -->
+          <% notifications.forEach(notification =>{%>
+            <%- include("components/notificationCard.ejs",{notification}) %>
+          <% }) %>
+        </div>
+        <!-- Notification-section -->
+      </div>
+      <% if(!notifications.length){ %>
+      <h2 class="text-center mt-5 tw-text-slate-500">Nothing to show here</h2>
+      <% } %>
+    </div>
+    <!-- Body-content -->
+
+    <!-- Notification-modal -->
+    <%- include("components/notificationModal.ejs") %>
+    <!-- Notification-modal -->
+
+    <%- include("includes/footer.ejs") %>
+    <script src="/src/controllers/main/notification.js" type="module"></script>
+  </body>
+</html>

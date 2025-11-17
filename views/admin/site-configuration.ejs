@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" class="light" id="important">
+  <!-- BEGIN: Head -->
+
+  <head>
+    <%- include("includes/head-assets") %>
+  </head>
+  <!-- END: Head -->
+
+  <body class="py-5">
+    <!-- Start Preloader Area -->
+    <%- include("../share/preloader.ejs") %>
+    <!-- End Preloader Area -->
+
+    <%- include("includes/navigation") %>
+    <!-- BEGIN: Content -->
+    <div class="content">
+      <%- include("includes/notice.ejs") %>
+      <div class="grid grid-cols-12 gap-6">
+        <div
+          class="lg:col-start-3 col-span-12 lg:col-span-8 flex lg:block flex-col mt-6"
+        >
+          <div class="intro-y overflow-auto lg:overflow-visible mt-2">
+            <form action="/settings" method="post">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <!-- BEGIN: Personal Information -->
+            <div class="intro-y box lg:mt-5">
+              <div
+                class="flex items-center p-5 border-b border-red2 dark:border-darkmode-400"
+              >
+                <h2 class="font-medium text-base mr-auto">
+                  Site Configuration
+                </h2>
+              </div>
+              <div class="p-5 grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div id="email" class="hidden">
+                  <label for="update-profile-form-11" class="form-label"
+                    >Email (to recieve notifications)</label
+                  >
+                  <input
+                    id="update-profile-form-11"
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                    name="email"
+                    value="<%= settings.email %>"
+                  />
+                  <div class="message"></div>
+                </div>
+                <div>
+                  <label for="update-profile-form-8" class="form-label"
+                    >Display LiveChat</label
+                  >
+                  <select id="update-profile-form-8" class="form-select" name="liveChat">
+                    <option value="1" <%= settings.liveChat ? 'selected' : "" %>>True</option>
+                    <option value="" <%= !settings.liveChat ? 'selected' : "" %>>False</option>
+                  </select>
+                </div>
+                <div id="age">
+                  <label for="update-profile-form-11" class="form-label"
+                    >Min age limit (for Registration)</label
+                  >
+                  <input
+                    id="update-profile-form-11"
+                    type="number"
+                    class="form-control"
+                    placeholder="Min user age"
+                    name="minAge"
+                    value="<%= settings.minAge %>"
+                  />
+                  <div class="message"></div>
+                </div>
+                <div>
+                  <label for="update-profile-form-11" class="form-label"
+                    >Require Token for Transfer</label
+                  >
+                  <select name="cot" id="update-profile-form-8" class="form-select">
+                    <option value="1" <%= settings.cot ? 'selected' : "" %>>True</option>
+                    <option value="" <%= !settings.cot ? 'selected' : "" %>>False</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="update-profile-form-11" class="form-label"
+                    >Pending New Users</label
+                  >
+                  <select name="pendNewUsers" id="update-profile-form-8" class="form-select">
+                    <option value="1" <%= settings.pendNewUsers ? 'selected' : "" %>>True</option>
+                    <option value="" <%= !settings.pendNewUsers ? 'selected' : "" %>>False</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center">
+              <button type="button" id="submitBtn" class="btn btn-primary mt-3">Save</button>
+            </div>
+          </form>
+            <!-- END: Personal Information -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END: Content -->
+    <%- include("includes/js-assets") %>
+    <script
+    src="/src/controllers/admin/settings.js"
+    type="module"
+  ></script>
+  <script>
+      $(".menu.menu_site_config").addClass("menu--active");
+    $(".top-menu.menu_settings").addClass("top-menu--active");
+  </script>
+  </body>
+</html>

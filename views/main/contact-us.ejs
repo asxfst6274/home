@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <%- include("includes/head.ejs") %>
+
+  <body>
+    <%- include("includes/navigation.ejs") %>
+
+    <!-- Body-content -->
+    <div class="body-content">
+      <div
+        class="mobile-screen tw-shadow-2xl tw-bg-opacity-10"
+        style="
+          background-image: linear-gradient(
+              0deg,
+              rgba(247, 241, 235, 0.014740930551908282) 75%,
+              rgba(247, 241, 235, 1) 97%
+            ),
+            url('/share/images/chat-background.png');
+        "
+      >
+        <div
+          class="section-header d-block tw-border-b-4 tw-border-red1 pb-2 mb-0 shadow"
+        >
+          <h2 class="text-center">Customer Care</h2>
+        </div>
+        <!-- Inbox -->
+        <div class="message-full-area">
+          <!-- Inbox-area -->
+          <div class="inbox-area mt-3">
+            <div class="page-header-action mb-3 d-flex justify-content-center">
+              <a
+                id="loadMore"
+                href="javascript:void(0)"
+                class="p-2 tw-border-2 tw-border-redLight d-inline-flex rounded"
+              >
+                <i class="icofont-long-arrow-up"></i>
+                <p>Older Chats</p>
+              </a>
+            </div>
+            <div id="chat-notice" class="position-relative"></div>
+            <% if(!chat){ %>
+            <h2 id="welcomeMessage" class="text-center mt-5 tw-text-slate-500">
+              Got any issues? Please let us know :)
+            </h2>
+            <% } %>
+            <div id="chat-room"></div>
+            <div id="chat-notice2" class="position-relative"></div>
+          </div>
+          <!-- Inbox-area -->
+          <div class="tw-bg-red-300 tw-bg-opacity-25"></div>
+          <!-- Inbox-compose-area -->
+          <div class="inbox-compose-area tw-bg-white">
+            <div class="mobile-screen">
+              <div class="row align-items-center">
+                <div class="col-12">
+                  <div class="inbox-compose-item">
+                    <div>
+                      <div
+                        class="form-group tw-border-gray-300 tw-bg-milk tw-shadow-sm"
+                      >
+                        <input
+                          id="message"
+                          type="text"
+                          class="form-control"
+                          placeholder="Type Your Message"
+                        />
+                        <input
+                          type="hidden"
+                          name="_csrf"
+                          id="csrf"
+                          value="<%= csrfToken %>"
+                        />
+                        <button
+                          id="sendMessage"
+                          type="button"
+                          class="rounded-pill"
+                        >
+                          <i class="flaticon-send"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Inbox-compose-area -->
+        </div>
+        <!-- Inbox -->
+      </div>
+    </div>
+    <!-- Body-content -->
+
+    <%- include("includes/footer.ejs") %>
+    <script src="/src/controllers/main/contactUs.js" type="module"></script>
+  </body>
+</html>

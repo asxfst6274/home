@@ -1,0 +1,62 @@
+<!-- Preloader -->
+<%- include("../../share/preloader.ejs") %>
+<!-- Preloader -->
+
+<!-- Header-bg -->
+<div class="header-bg header-bg-1"></div>
+<!-- Header-bg -->
+
+<!-- Appbar -->
+<div class="fixed-top">
+  <div class="appbar-area sticky-black">
+    <div class="container">
+      <div class="appbar-container">
+        <div class="appbar-item appbar-actions">
+          <div class="appbar-action-item">
+            <a
+              href="#"
+              class="appbar-action-bar"
+              data-bs-toggle="modal"
+              data-bs-target="#sidebarDrawer"
+              ><i class="flaticon-menu"></i
+            ></a>
+          </div>
+        </div>
+        <div class="appbar-item appbar-brand mx-auto ps-4">
+          <a href="/">
+            <img
+              src="<%= dataFile.logo2 %>"
+              alt="logo"
+              class="main-logo tw-h-[40px]"
+            />
+            <img
+              src="<%= dataFile.logo %>"
+              alt="logo"
+              class="hover-logo tw-h-[40px]"
+            />
+          </a>
+        </div>
+        <div class="appbar-item appbar-options">
+          <div class="appbar-option-item appbar-option-notification">
+            <a href="/notifications"><i class="flaticon-bell"></i></a>
+            <% if(noticeCount){ %>
+            <span class="option-badge" id="noticeCountHead"
+              ><%= noticeCount %></span
+            >
+            <% } %>
+          </div>
+          <div
+            class="appbar-option-item appbar-option-profile tw-outline tw-outline-offset-2 tw-outline-2 tw-outline-redLight"
+          >
+            <a href="/settings"
+              ><img
+                src="<%= dataFile.imageHost %>/user/icon/<%= cUser.profile ? cUser.profile : 'default.png' %>"
+                alt="profile"
+            /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Appbar -->

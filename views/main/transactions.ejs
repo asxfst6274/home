@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <%- include("includes/head.ejs") %>
+
+  <body>
+    <%- include("includes/navigation.ejs") %>
+
+    <!-- Body-content -->
+    <div class="body-content">
+      <div class="mobile-screen">
+        <div
+          class="section-header d-block tw-border-b-4 tw-border-red1 mb-3 pb-2"
+        >
+          <h2 class="text-center">Transactions</h2>
+        </div>
+
+        <!-- prettier-ignore -->
+        <% transactions.forEach((transaction,i,arr) =>{%>
+          <% if(i === 0){ %>
+        <div class="section-header mt-3">
+          <h2 class="text-capitalize">
+            <%= helpers.formatDay(transaction.created_at) %>
+          </h2>
+        </div>
+        <% }else if(helpers.formatDay(transaction.created_at) !==
+        helpers.formatDay(arr[i-1].created_at)){ %>
+        <!--  -->
+        <div class="section-header mt-3">
+          <h2 class="text-capitalize">
+            <%= helpers.formatDay(transaction.created_at) %>
+          </h2>
+        </div>
+        <% } %>
+        <!--  -->
+        <%- include("components/transactionCard.ejs",{transaction}) %> <% }) %>
+      </div>
+      <% if(!transactions.length){ %>
+      <h2 class="text-center mt-5 tw-text-slate-500">
+        No transactions records to show :(
+      </h2>
+      <% } %>
+    </div>
+    <!-- Body-content -->
+
+    <!-- Centermodal -->
+    <%- include("components/transactionModal.ejs") %>
+    <!-- Centermodal -->
+
+    <%- include("includes/footer.ejs") %>
+    <script src="/src/controllers/main/transaction.js" type="module"></script>
+  </body>
+</html>

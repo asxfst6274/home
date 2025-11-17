@@ -1,0 +1,61 @@
+<div
+  class="modal fade"
+  id="notificationModal"
+  tabindex="-1"
+  aria-labelledby="notificationModal"
+  aria-hidden="true"
+>
+  <div data-bs-toggle="modal" data-bs-target="#notificationModal"></div>
+  <div class="modal-dialog modal-dialog-centered notification-modal-dialog">
+    <div class="modal-content mobile-screen px-0 py-3">
+      <div class="container">
+        <div class="modal-header">
+          <div class="modal-header-title">
+            <h5 class="modal-title">Notification Details</h5>
+          </div>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <span class="material-icons">close</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="notification-modal">
+            <div class="notification-modal-header">
+              <h3 class="text-capitalize" id="noticeSubject">
+                Updates To Our Privacy Policy
+              </h3>
+              <p id="noticeDate">02/01/2023 12:59 AM</p>
+            </div>
+            <div class="notification-modal-details">
+              <h3>
+                Dear <span class="text-capitalize"><%= cUser.name %></span>,
+              </h3>
+              <p id="noticeMessage" class="mb-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
+                ipsum uspen disse ultrices gravida. Risus commodo viverra
+                maecenas accumsan lacus vel facilisis. Vestibulum ac diam sit
+                amet quam vehicula elementum sed sit amet dui.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form action="/notification/delete" method="post">
+        <div class="notification-delete">
+          <a href="javascript:void(0)">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <input type="hidden" name="noticeId" id="noticeId" />
+            <button type="submit">
+              <i class="flaticon-trash"></i>
+            </button>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

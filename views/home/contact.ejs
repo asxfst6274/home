@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("includes/head.ejs") %>
+  </head>
+
+  <body class="custom-cursor">
+    <%- include("../share/preloader.ejs") %>
+
+    <div class="page-wrapper">
+      <%- include("includes/navigation.ejs") %>
+
+      <!--Page Header Start-->
+      <section class="page-header">
+        <div
+          class="page-header__bg"
+          style="
+            background-image: url(/home/assets/images/backgrounds/breadcrumb-area-bg-6.jpg);
+          "
+        ></div>
+        <div class="page-header__shape-2 float-bob-x">
+          <img
+            src="/home/assets/images/shapes/page-header-shape-2.png"
+            alt=""
+          />
+        </div>
+        <div class="page-header__shape-1 float-bob-y">
+          <img
+            src="/home/assets/images/shapes/page-header-shape-1.png"
+            alt=""
+          />
+        </div>
+        <div class="page-header__shape-3 float-bob-x">
+          <img
+            src="/home/assets/images/shapes/page-header-shape-3.png"
+            alt=""
+          />
+        </div>
+        <div class="container">
+          <div class="page-header__inner">
+            <h2>Contact Us</h2>
+            <div class="thm-breadcrumb__inner">
+              <ul class="thm-breadcrumb list-unstyled">
+                <li><a href="/">Home</a></li>
+                <li><span>/</span></li>
+                <li>Contact Us</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Page Header End-->
+
+      <!--Contact Page Start-->
+      <section class="contact-page">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-5 col-lg-6">
+              <div class="contact-page__left">
+                <div class="contact-page__form-box">
+                  <form
+                    action="https://thegenius.co/html/sinace2//home/assets/inc/sendemail.php"
+                    class="contact-page__form contact-form-validated"
+                    novalidate="novalidate"
+                  >
+                    <div class="row">
+                      <div class="col-xl-12">
+                        <div class="contact-page__input-box">
+                          <input
+                            type="text"
+                            placeholder="Your name"
+                            name="name"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-xl-12">
+                        <div class="contact-page__input-box">
+                          <input
+                            type="email"
+                            placeholder="Email address"
+                            name="email"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xl-12">
+                        <div class="contact-page__input-box text-message-box">
+                          <textarea
+                            name="message"
+                            placeholder="Write message"
+                          ></textarea>
+                        </div>
+                        <div class="contact-page__btn-box">
+                          <button
+                            type="submit"
+                            class="thm-btn contact-page__btn"
+                          >
+                            Send a Message
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="result"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-7 col-lg-6">
+              <div class="contact-page__right">
+                <div class="section-title text-left">
+                  <div class="section-title__tagline-box">
+                    <span class="section-title__tagline">contact us</span>
+                  </div>
+                  <h2 class="section-title__title">
+                    Have Questions? Contact <br />
+                    with us <span>Anytime</span>
+                  </h2>
+                </div>
+                <ul class="contact-page__points list-unstyled">
+                  <% if(dataFile.phone){ %>
+                  <li>
+                    <div class="icon">
+                      <span class="icon-telephone-1"></span>
+                    </div>
+                    <div class="text">
+                      <p>Have any question?</p>
+                      <h3>
+                        Free
+                        <a href="tel:<%= dataFile.phone %>"
+                          ><%= dataFile.phone %></a
+                        >
+                      </h3>
+                    </div>
+                  </li>
+                  <% } %>
+                  <li>
+                    <div class="icon">
+                      <span class="icon-email"></span>
+                    </div>
+                    <div class="text">
+                      <p>Send Email</p>
+                      <h3>
+                        <a href="mailto:<%= dataFile.email %>"
+                          ><%= dataFile.email %></a
+                        >
+                      </h3>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="icon">
+                      <span class="icon-pin"></span>
+                    </div>
+                    <div class="text">
+                      <p>Visit anytime</p>
+                      <h3>
+                        <%= `${dataFile.address1}, ${dataFile.location}` %>
+                      </h3>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Contact Page End-->
+
+      <!--Site Footer Start-->
+      <%- include("includes/footer.ejs") %>
+      <!--Site Footer End-->
+    </div>
+    <!-- /.page-wrapper -->
+
+    <%- include("includes/bottom.ejs") %>
+  </body>
+</html>

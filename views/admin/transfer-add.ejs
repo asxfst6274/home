@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" class="light" id="important">
+  <!-- BEGIN: Head -->
+
+  <head>
+    <%- include("includes/head-assets.ejs") %>
+  </head>
+  <!-- END: Head -->
+
+  <body class="py-5">
+    <!-- Start Preloader Area -->
+    <%- include("../share/preloader.ejs") %>
+    <!-- End Preloader Area -->
+
+    <%- include("includes/navigation.ejs") %>
+    <!-- BEGIN: Content -->
+    <div class="content">
+        <%- include("includes/notice.ejs") %>
+      <div class="grid grid-cols-12 gap-6">
+        <div
+          class="lg:col-start-3 col-span-12 lg:col-span-8 flex lg:block flex-col mt-6"
+        >
+          <div class="intro-y overflow-auto lg:overflow-visible mt-2">
+            <!-- BEGIN: Personal Information -->
+            <form action="/admin/transfer/<%= editing ? "edit" : "add" %>" method="post">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <% if(editing){ %>
+                <input type="hidden" name="_id" value="<%= transfer._id %>">
+                <% } %>
+            <div class="intro-y box lg:mt-5">
+              <div
+                class="flex items-center p-5 border-b border-red2 dark:border-darkmode-400"
+              >
+                <h2 class="font-medium text-base mr-auto">
+                  <%= editing ? "Edit Transfer" : "Add New Transfer" %>
+                </h2>
+              </div>
+              <div class="p-5 grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div id="account">
+                  <label for="update-profile-form-8" class="form-label"
+                    >Account Mode</label
+                  >
+                  <select name="accountMode" class="form-select" id="accountMode">
+                    <option value="same" <%= transfer.accountMode === 'same' ? 'selected'  : '' %>><%= dataFile.name %></option>
+                    <option value="others" <%= transfer.accountMode === 'others' ? 'selected'  : '' %>>Other Banks</option>
+                    <option value="crypto" <%= transfer.accountMode === 'crypto' ? 'selected'  : '' %>>Cryptocurrency</option>
+                    <option value="paypal" <%= transfer.accountMode === 'paypal' ? 'selected'  : '' %>>Paypal</option>
+                    <option value="cashApp" <%= transfer.accountMode === 'cashApp' ? 'selected'  : '' %>>Cash App</option>
+                  </select>
+                </div>
+                <div id="sender">
+                  <label for="update-profile-form-8" class="form-label"
+                    ><%= transfer.move === 'debit' ? 'Sender'  : 'Receiver' %></label
+                  >
+                  <select id="update-profile-form-8" class="tom-select" name="user">
+                    <% users.forEach(user => { %>
+                    <option data-balance="<%= user.balance %>" value="<%= user._id %>" <%= user._id.toString() === transfer.user?.toString() ? "selected" : "" %>><%= helpers.toTitle(user.name) %> (<%= user.accountNumber %>)</option>
+                    <% }) %>
+                  </select>
+                  <div class="message"></div>
+                </div>
+                <div>
+                  <label for="update-profile-form-8" class="form-label"
+                    >From</label
+                  >
+                  <select id="update-profile-form-8" class="form-select">
+                    <option value="savings">
+                        <%= helpers.toTitle(users[0].accountType) %> (<%= users[0].accountNumber %>)
+                    </option>
+                  </select>
+                  <div class="message"></div>
+                </div>
+                <div id="receiver" class="optionalInput sameInput">
+                  <label for="update-profile-form-8" class="form-label"
+                    ><%= transfer.move !== 'debit' ? 'Sender'  : 'Receiver' %></label
+                  >
+                  <select name="receiver" id="update-profile-form-8" class="tom-select">
+                    <% users.forEach((user,i,userArr) => { %>
+                    <option value="<%= user._id %>" <%= !transfer.user && i === 1 ? "selected" :  transfer.accountNumber === user.accountNumber ? "selected" : "" %>><%= helpers.toTitle(user.name) %> (<%= user.accountNumber %>)</option>
+                    <% }) %>
+                  </select>
+                  <div class="message"></div>
+                </div>
+                <div id="bank" class="optionalInput othersInput">
+                  <label for="update-profile-form-11" class="form-label"
+                    >receiver's Bank</label
+                  >
+                  <input
+                    id="update-profile-form-11"
+                    type="text"
+                    class="form-control"
+                    placeholder="Bank"
+                    value="<%= transfer.bank %>"
+                    name="bank"
+                  />
+                  <div class="message"></div>
+                </div>
+                <div id="routing" class="optionalInput othersInput">
+                  <label for="update-profile-form-11" class="form-label"
+                    >Bank's Routing Number</label
+                  >
+                  <input
+                    id="update-profile-form-11"
+                    type="number"
+                    class="form-control"
+                    placeholder="Routing Number"
+                    value="<%= transfer.routing %>"
+                    name="routing"
+                  />
+                  <div class="message"></div>
+                </div>
+                <div id="acNumber" class="optionalInput othersInput">
+                  <label for="update-profile-form-11" class="form-label"
+                    >receiver's Account Number</label
+                  >
+                  <input
+                    id="update-profile-form-11"
+                    type="number"
+                    class="form-control"
+                    placeholder="Account Number"
+                    value="<%= transfer.accountNumber %>"
+                    name="accountNumber"
+                  />
+                  <div class="message"></div>
+                </div>
+                <div id="name" class="optionalInput othersInput paypalInput cryptoInput cashAppInput">
+                  <label for="update-profile-form-11" class="form-label"
+                    >receiver's Name</label
+                  >
+                  <input
+                    id="update-profile-form-11"
+                    type="text"
+                    class="form-control"
+                    placeholder="Name"
+                    value="<%= helpers.toTitle(transfer.name) %>"
+                    name="name"
+                  />
+                  <div class="message"></div>
+                </div>
+                <div id="coin" class="optionalInput cryptoInput">
+                  <label for="update-profile-form-11" class="form-label"
+                    >receiver's Coin</label
+                  >
+                  <input
+                    id="update-profile-form-11"
+                    type="text"
+                    class="form-control"
+                    placeholder="Coin"
+                    value="<%= transfer.coin %>"
+                    name="coin"
+                  />
+                  <div class="message"></div>
+                </div>
+                <div id="wallet" class="optionalInput cryptoInput">
+                  <label for="update-profile-form-11" class="form-label"
+                    >receiver's Wallet Address</label
+                  >
+                  <input
+                    id="update-profile-form-11"
+                    type="text"
+                    class="form-control"
+                    placeholder="Wallet Address"
+                    value="<%= transfer.wallet %>"
+                    name="wallet"
+                  />
+                  <div class="message"></div>
+                </div>
+                <div id="paypalEmail" class="optionalInput paypalInput">
+                  <label for="update-profile-form-11" class="form-label"
+                    >receiver's Paypal Email</label
+                  >
+                  <input
+                    id="update-profile-form-11"
+                    type="email"
+                    class="form-control"
+                    placeholder="Paypal Email"
+                    value="<%= transfer.paypalEmail %>"
+                    name="paypalEmail"
+                  />
+                  <div class="message"></div>
+                </div>
+                <div id="cashAppUsername" class="optionalInput cashAppInput">
+                  <label for="update-profile-form-11" class="form-label"
+                    >receiver's CashApp Username</label
+                  >
+                  <input
+                    id="update-profile-form-11"
+                    type="text"
+                    class="form-control"
+                    placeholder="CashApp Username"
+                    value="<%= transfer.cashAppUsername %>"
+                    name="cashAppUsername"
+                  />
+                  <div class="message"></div>
+                </div>
+                <div id="amount">
+                  <label for="update-profile-form-11" class="form-label"
+                    >Amount</label
+                  >
+                  <input
+                    id="update-profile-form-11"
+                    type="number"
+                    class="form-control"
+                    placeholder="Amount"
+                    value="<%= transfer.amount %>"
+                    name="amount"
+                  />
+                  <div class="message"></div>
+                </div>
+                <div id="date">
+                  <label for="update-profile-form-11" class="form-label"
+                    >Date</label
+                  >
+                  <input
+                    id="update-profile-form-11"
+                    type="datetime-local"
+                    class="form-control"
+                    placeholder="Date"
+                    value="<%= new Date(transfer.created_at).toISOString().slice(0, 16)  || new Date().toISOString().slice(0, 16)  %>"
+                    name="created_at"
+                  />
+                  <div class="message"></div>
+                </div>
+                <% if(!editing){ %>
+                <div>
+                  <label for="update-profile-form-8" class="form-label"
+                    >Status</label
+                  >
+                  <select id="update-profile-form-8" class="form-select" name="status">
+                    <option value="ongoing">Pending</option>
+                    <option value="complete">Confirmed</option>
+                    <option value="cancelled">Cancelled</option>
+                  </select>
+                  <div class="message"></div>
+                </div>
+                <% } %>
+              </div>
+            </div>
+            <div class="flex justify-center">
+              <button type="submit" class="optionalInput  sameInput btn btn-primary mt-3" id="sameBtn" >
+               <%= editing ? "Save" : "Add Transfer" %>
+              </button>
+            </div>
+            <div class="flex justify-center">
+              <button type="submit" class="optionalInput othersInput btn btn-primary mt-3"  id="otherBtn" >
+                <%= editing ? "Save" : "Add Transfer" %>
+              </button>
+            </div>
+            <div class="flex justify-center" >
+              <button type="submit" class="optionalInput cryptoInput btn btn-primary mt-3" id="cryptoBtn">
+                <%= editing ? "Save" : "Add Transfer" %>
+              </button>
+            </div>
+            <div class="flex justify-center">
+              <button type="submit" class="optionalInput paypalInput btn btn-primary mt-3" id="paypalBtn">
+                <%= editing ? "Save" : "Add Transfer" %>
+              </button>
+            </div>
+            <div class="flex justify-center">
+              <button type="submit" class="optionalInput cashAppInput btn btn-primary mt-3" id="cashAppBtn">
+                <%= editing ? "Save" : "Add Transfer" %>
+              </button>
+            </div>
+            </form>
+            <!-- END: Personal Information -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END: Content -->
+    <%- include("includes/js-assets.ejs") %>
+    <script
+    src="/src/controllers/admin/addTransfer.js"
+    type="module"
+  ></script>
+  <script>
+      $(".menu.menu_transfer").addClass("menu--active");
+    $(".top-menu.menu_transactions").addClass("top-menu--active");
+  </script>
+  </body>
+</html>
