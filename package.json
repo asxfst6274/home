@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
     "start-server": "node app.js",
-    "build": "node app.js",
+    "build": "echo 'No build step'",
     "watch": "npx tailwindcss -i public/share/css/input.css -o public/share/css/output.css --watch"
   },
   "keywords": [],
